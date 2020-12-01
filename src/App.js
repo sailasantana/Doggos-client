@@ -1,14 +1,14 @@
-import LoginPage from './login-page';
-import SignUp from './sign-up';
+import LoginPage from './loginSignup/login-page';
+import SignUp from './loginSignup/sign-up';
 import {Route} from 'react-router-dom'
-import MapWrapped from './map'
+import MapWrapped from './map/map'
+import Favorite from './favorites/favorite'
+import './map/map.css'
+import SearchForm from './search/search';
+
 
 function App() {
   
-  //defaultProps = {
-    //height: "100vh",
-    //width: "100vw",
-  //}
 
   return (
     <div className="App">
@@ -17,41 +17,27 @@ function App() {
       <Route
         path='/dashboard'
         render={(props) => (
-          
+        <div style={{ width: "40vw", height: "60vh" }} className = "map"> 
          <MapWrapped
-                style = {{height: "50vh", width: "50vh"}}
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                process.env.REACT_APP_GOOGLE_KEY
+                  "AIzaSyB1lEVMUE9Vomieo5bDBKTQSTwcXqFqxP4"
                    }`}
                    loadingElement={<div style={{ height: "100%" }} />}
                       containerElement={<div style={{ height: "100%" }} />}
                        mapElement={<div style={{ height: "100%" }} />}
                        />
+                       </div>
          )
        }
       />
-    </div>)
+      <Route path='/dashboard' component={SearchForm} />
+      <Route path='/dashboard' component={Favorite} />
+    </div>
+    )
 }
 
-   App.defaultProps = {
-        height: "50vh",
-        width: "50vw",    
-      }
 
 
-        //component={() => <MapWrapped
-         // style =  {{ width : '100vw', height : '100 vh'}}
-          //googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-            //process.env.REACT_APP_GOOGLE_KEY
-          //}`}
-          //loadingElement={<div style={{ height: "100%" }} />}
-          //containerElement={<div style={{ height: "100%" }} />}
-          //mapElement={<div style={{ height: "100%" }} />}
-        ///>}
-        ///>
- 
-    //</div>
- // );
-//}
+
 
 export default App;

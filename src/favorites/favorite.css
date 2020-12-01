@@ -1,0 +1,19 @@
+.favorite {
+    border-style: groove;
+    padding-left:10px;
+    padding-right:10px;
+
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.title {
+    text-align: center;
+    padding-top: 20px;
+}

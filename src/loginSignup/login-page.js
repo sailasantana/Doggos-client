@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
 import SignUp from './sign-up'
-import AuthApiService from './client-services/auth-api-service'
-import TokenService from './client-services/token'
+import AuthApiService from '../client-services/auth-api-service'
+import TokenService from '../client-services/token'
 
 export default class LoginPage extends React.Component {
 
