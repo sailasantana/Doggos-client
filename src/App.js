@@ -4,7 +4,6 @@ import {Route} from 'react-router-dom'
 import MapWrapped from './map/map'
 import Favorite from './favorites/favorite'
 import './map/map.css'
-import SearchForm from './search/search';
 
 
 function App() {
@@ -15,12 +14,12 @@ function App() {
       <Route exact path='/' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
       <Route
-        path='/dashboard'
+        path='/search'
         render={(props) => (
-        <div style={{ width: "40vw", height: "60vh" }} className = "map"> 
+        <div style={{ width: "50vw", height: "75vh" }} className = "map"> 
          <MapWrapped
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                  "AIzaSyB1lEVMUE9Vomieo5bDBKTQSTwcXqFqxP4"
+                  ""
                    }`}
                    loadingElement={<div style={{ height: "100%" }} />}
                       containerElement={<div style={{ height: "100%" }} />}
@@ -30,7 +29,6 @@ function App() {
          )
        }
       />
-      <Route path='/dashboard' component={SearchForm} />
       <Route path='/dashboard' component={Favorite} />
     </div>
     )
