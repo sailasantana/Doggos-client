@@ -6,11 +6,11 @@ import Results from '../results/results'
 export default class SearchForm extends React.Component {
 
     state = {
-        clicked : false
+        clicked : true
     }
 
     handleSubmit = () => {
-        this.state.clicked = true
+        this.state.clicked = false
     }
 
     render(){
