@@ -14,9 +14,8 @@ export default class SignUp extends React.Component {
                     <input type = 'text' name= 'user-name'/>
                     <label>Password</label>
                     <input type = 'text' name= 'password'/>
-                    <button type='submit' >
-                    Sign Up
-                </button>
+                    <Link to ='./'>Sign Up</Link>
+
                 </form>
             </div>
         )

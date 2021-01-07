@@ -59,7 +59,8 @@ export default class LoginPage extends React.Component {
                     <label>Password</label>
                     <input type = 'text' name= 'password' id= 'password'/>
                     <button type='submit' >
-                    Login
+                    <Link to ='./search'>Login</Link>
+
                 </button>
                 <Link to ='./sign-up'>New to DoggosWelcome? Sign Up here!</Link>
                 </form>

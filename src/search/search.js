@@ -1,25 +1,31 @@
 import React from 'react';
 import './search-form.css'
 import Results from '../results/results'
+import { Link } from 'react-router-dom';
 
 
 export default class SearchForm extends React.Component {
 
     state = {
-        clicked : true
+        clicked : false
     }
 
-    handleSubmit = () => {
-        this.state.clicked = false
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.setState({clicked : true});
     }
 
     render(){
         return(
                 <div>
                 <h1>Begin Your Search</h1>
-                <form className ='form-container' onSubmit={ () => {this.setState({clicked: true})}}>   
-                <label for="fname">Zip Code:</label>
+                <form className ='form-container' onSubmit={this.handleSubmit}>
+                <div className = "input">       
+                <label for="fname" >Zip Code:</label>
                 <input type="text" id="zip" name="zip" value="10011" />
+                </div>
+                <div className = "input"> 
                 <label for="type">Type of Activity:</label>
                 <select name="type" id="type">
                 <option value="Parks">Parks</option>
@@ -29,9 +35,10 @@ export default class SearchForm extends React.Component {
                 <option value="Veterinarian Services">Veterinarian Services</option>
                 <option value="Dog Beaches">Dog Beaches</option>
                 </select>
-                <button>Take Doggo!</button>
-                <div className = "results"> {this.state.clicked ? <Results /> : "this works"}</div>
+                </div>
+                <input type="submit" value="Oh the places your doggo will go!" className="button" />
                 </form>
+                <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
                 </div>
         )
     }
