@@ -12,31 +12,36 @@ export default class LoginPage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.userInput = React.createRef();
+        this.passInput = React.createRef();
         this.state = {error: null};
     };
 
     // handle login authentication and validation on submit. //
     handleJwtLoginAuth = e => {
         e.preventDefault();
-        const {user_name, password} = e.target;
-
-        this.setState({
-            error: null
-        });
+        //console.log(this.userInput.current.value)
+        //console.log(this.passInput.current.value)
+     
         AuthApiService.postLogin({
-            user_name: user_name.value,
-            password: password.value 
+            user_name: this.userInput.current.value,
+            password: this.passInput.current.value 
         })
     .then(res => {
+        console.log('abc')
         //you need a return here to trigger the next .then
-                user_name.value = '';
-                password.value = '';
+                this.context.setUserName(this.userInput.current.value)
                 TokenService.saveAuthToken(res.authToken);
-                this.props.onValidLogin(); })
+                this.props.onValidLogin(); 
+                //console.log(this.props.history)
+                return res.json()
+            })
+                
            
     .then(() => {
         //you can history.push instead
-            window.location='/dashboard';})
+        console.log(this.props.history)
+            this.props.history.push('/search')})
             
     .catch(res => {
             this.setState({
@@ -55,11 +60,11 @@ export default class LoginPage extends React.Component {
                 <h2>Login or Sign Up to Continue</h2>
                 <form onSubmit={this.handleJwtLoginAuth}>
                     <label>Username</label>
-                    <input type = 'text' name= 'user_name' id= 'user_name'/>
+                    <input ref = {this.userInput} type = 'text' name= 'user' id= 'user'/>
                     <label>Password</label>
-                    <input type = 'text' name= 'password' id= 'password'/>
+                    <input ref = {this.passInput} type = 'password' name= 'password' id= 'password'/>
                     <button type='submit' >
-                    <Link to ='./search'>Login</Link>
+                    Login
 
                 </button>
                 <Link to ='./sign-up'>New to DoggosWelcome? Sign Up here!</Link>

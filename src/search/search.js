@@ -2,18 +2,57 @@ import React from 'react';
 import './search-form.css'
 import Results from '../results/results'
 import { Link } from 'react-router-dom';
+import config from '../config'
+import DoggoContext from '../context'
+
 
 
 export default class SearchForm extends React.Component {
 
     state = {
-        clicked : false
+        clicked : false,
+        places : []
     }
+   
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    static contextType = DoggoContext;
+
+
+    handleSubmit = (e) => {
+        e.preventDefault();
 
         this.setState({clicked : true});
+
+        const searchValues = {
+            zip: e.target['zip'].value,
+            type: e.target['type'].value
+           
+           
+        };
+        console.log(searchValues)
+
+        fetch(`${config.API_ENDPOINT}/api/search`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(searchValues),
+        })
+          .then(res => {
+            if(!res.ok){
+              return res.json().then(e => Promise.reject(e))
+            }
+            return res.json()
+          })
+          .then(places => {
+            this.context.setLocations(places)
+            this.setState(places)
+          })
+          .catch(error => {
+            alert({error})
+          })
+
+
     }
 
     render(){

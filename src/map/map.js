@@ -6,9 +6,17 @@ import Sidebar from '../sidebar/sidebar'
 import {Link} from 'react-router-dom'
  
  
-function Map  () {
-       console.log()
+class Map extends React.Component {
+
+   constructor(props){
+       super(props)
+
+       this.state = {
+           places : []
+       }
+   } 
     
+      render(){
         return(
             <div>
             <Sidebar width={300} height={"100vh"}>
@@ -32,6 +40,7 @@ function Map  () {
             </div>
             </div>
         )
+      }
     
 
 }
