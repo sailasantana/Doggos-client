@@ -26,7 +26,7 @@ class App extends React.Component {
 
   updateUserName = (user) => {
 
-    this.setState({username: user})
+    this.setState({user_name: user})
     
   }
 
@@ -35,7 +35,7 @@ class App extends React.Component {
     const contextValues = {
       locations: this.state.places,
       setLocations : this.getPlaces,
-      user_name : this.state.username,
+      user_name : this.state.user_name,
       setUserName : this.updateUserName
 
     }
@@ -53,7 +53,7 @@ class App extends React.Component {
         <div style={{ width: "50vw", height: "75vh" }} className = "map"> 
          <MapWrapped
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=
-                  
+                  AIzaSyAZ9e8yrmg_qJFoBB7Giz4ZKzQNPl7fDm4
                    `}
                    loadingElement={<div style={{ height: "100%" }} />}
                       containerElement={<div style={{ height: "100%" }} />}

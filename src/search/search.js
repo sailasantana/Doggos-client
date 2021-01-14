@@ -9,13 +9,20 @@ import DoggoContext from '../context'
 
 export default class SearchForm extends React.Component {
 
-    state = {
-        clicked : false,
-        places : []
-    }
-   
-
     static contextType = DoggoContext;
+
+
+    constructor(props){
+        super(props)
+        
+        this.zipInput = React.createRef()
+        this.typeInput = React.createRef()
+        
+        this.state = {
+            clicked : false,
+            places : []
+        }
+    }
 
 
     handleSubmit = (e) => {
@@ -24,8 +31,8 @@ export default class SearchForm extends React.Component {
         this.setState({clicked : true});
 
         const searchValues = {
-            zip: e.target['zip'].value,
-            type: e.target['type'].value
+            zip: this.zipInput.current.value,
+            type: this.typeInput.current.value
            
            
         };
@@ -36,15 +43,18 @@ export default class SearchForm extends React.Component {
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(searchValues),
+        body: JSON.stringify(searchValues)
         })
           .then(res => {
+              console.log('abc')
             if(!res.ok){
               return res.json().then(e => Promise.reject(e))
             }
+            
             return res.json()
           })
           .then(places => {
+              console.log(places)
             this.context.setLocations(places)
             this.setState(places)
           })
@@ -62,17 +72,17 @@ export default class SearchForm extends React.Component {
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div className = "input">       
                 <label for="fname" >Zip Code:</label>
-                <input type="text" id="zip" name="zip" value="10011" />
+                <input ref = {this.zipInput} type="text" id="zip" name="zip" value="10011" />
                 </div>
                 <div className = "input"> 
                 <label for="type">Type of Activity:</label>
-                <select name="type" id="type">
+                <select ref = {this.typeInput} name="type" id="type">
                 <option value="Parks">Parks</option>
                 <option value="Bars">Bars</option>
                 <option value="Restaurants">Restaurants</option>
                 <option value="Pet Supplies">Pet Supplies</option>
                 <option value="Veterinarian Services">Veterinarian Services</option>
-                <option value="Dog Beaches">Dog Beaches</option>
+                <option value="Dog Beaches">Beaches</option>
                 </select>
                 </div>
                 <input type="submit" value="Oh the places your doggo will go!" className="button" />

@@ -3,8 +3,11 @@ import { Route, Link } from 'react-router-dom'
 import SignUp from './sign-up'
 import AuthApiService from '../client-services/auth-api-service'
 import TokenService from '../client-services/token'
+import DoggoContext from '../context'
 
 export default class LoginPage extends React.Component {
+
+    static contextType = DoggoContext;
 
     static defaultProps = {
         onValidLogin: () => {}
@@ -28,18 +31,16 @@ export default class LoginPage extends React.Component {
             password: this.passInput.current.value 
         })
     .then(res => {
-        console.log('abc')
+        
         //you need a return here to trigger the next .then
                 this.context.setUserName(this.userInput.current.value)
                 TokenService.saveAuthToken(res.authToken);
                 this.props.onValidLogin(); 
-                //console.log(this.props.history)
-                return res.json()
+                return ;
             })
                 
            
     .then(() => {
-        //you can history.push instead
         console.log(this.props.history)
             this.props.history.push('/search')})
             
