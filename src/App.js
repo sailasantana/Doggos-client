@@ -4,11 +4,10 @@ import {Route} from 'react-router-dom';
 import MapWrapped from './map/map';
 import Favorite from './favorites/favorite';
 import './map/map.css';
-import AddForm from './add-review-form/add-review';
 import Recommend from './recommend/recommend';
 import DoggoContext from './context'
 import React from 'react';
-
+import SearchForm from './search/search'
 
 class App extends React.Component {
 
@@ -16,7 +15,8 @@ class App extends React.Component {
     super(props)
     this.state = {
       places : [],
-      user_name: ''
+      user_name: '',
+      savedSpots : []
     }
   }
 
@@ -30,13 +30,38 @@ class App extends React.Component {
     
   }
 
+  setUserSpots = spots => {
+    this.setState({savedSpots : spots})
+
+  }
+
+  addToSaved = (spot) => {
+    this.setState({ savedSpots: [...this.state.savedSpots, spot]})
+  }
+
+  deleteSpot = (id) => {
+    const { savedSpots } = this.state
+ 
+    this.setState({
+      posts: savedSpots.filter (spot => {
+        return spot.id !== id
+      })
+    })
+
+  }
+
   render(){
 
     const contextValues = {
       locations: this.state.places,
       setLocations : this.getPlaces,
       user_name : this.state.user_name,
-      setUserName : this.updateUserName
+      setUserName : this.updateUserName,
+      savedSpots : this.state.savedSpots,
+      addToSaved : this.addToSaved,
+      setUserSpots : this.setUserSpots,
+      deleteSpot : this.deleteSpot
+      
 
     }
   
@@ -47,24 +72,9 @@ class App extends React.Component {
     <div className="App">
       <Route exact path='/' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
-      <Route
-        path='/search'
-        render={(props) => (
-        <div style={{ width: "50vw", height: "75vh" }} className = "map"> 
-         <MapWrapped
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=
-                  AIzaSyAZ9e8yrmg_qJFoBB7Giz4ZKzQNPl7fDm4
-                   `}
-                   loadingElement={<div style={{ height: "100%" }} />}
-                      containerElement={<div style={{ height: "100%" }} />}
-                       mapElement={<div style={{ height: "100%" }} />}
-                       />
-                       </div>
-         )
-       }
-      />
+      <Route path='/search' component={SearchForm} />
+
       <Route path='/dashboard' component={Favorite} />
-      <Route path='/add-review' component={AddForm} />
       <Route path='/recommend' component={Recommend} />
     </div>
     </ DoggoContext.Provider >

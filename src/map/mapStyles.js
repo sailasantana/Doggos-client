@@ -4,7 +4,7 @@ export default [
       elementType: "geometry",
       stylers: [
         {
-          color: "#004358"
+          color: "#004367"
         }
       ]
     },
@@ -31,7 +31,7 @@ export default [
       elementType: "geometry",
       stylers: [
         {
-          color: "#fd7400"
+          color: "#979100"
         }
       ]
     },
@@ -122,7 +122,7 @@ export default [
           color: "#1f8a70"
         },
         {
-          weight: 0.7
+          weight: 0.6
         }
       ]
     }

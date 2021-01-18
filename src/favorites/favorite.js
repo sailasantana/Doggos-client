@@ -1,14 +1,55 @@
 import React from 'react';
 import './favorite.css'
 import { Link } from 'react-router-dom';
-import AddForm from '../add-review-form/add-review'
 import Sidebar from '../sidebar/sidebar'
+import DoggoContext from '../context'
+import config from '../config'
 
 
 
 export default class Favorite extends React.Component {
 
+    static contextType = DoggoContext;
+
+    handleDelete = () => {
+        const id = this.props.id;
+        console.log(id)
+  
+        fetch(`${config.API_ENDPOINT}/api/${this.context.user_name}/dashboard/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+        .then (res => {
+          if (!res.ok) {
+            return res.json().then(e => Promise.reject(e));
+          }
+          return null;
+        })
+        .then(() => {
+          this.context.deleteSpot(id);
+        })
+        .catch(error => {
+          console.error({error});
+        });
+
+    }
+
     render(){
+
+        console.log(this.context)
+
+        let spots = this.context.savedSpots.map((spot , i) => {
+            return (
+                <div className = "favorite" key = {this.context.savedSpots[i].id}> 
+                <h3 className = "title">{this.context.savedSpots[i].title}</h3>
+                <h4>{this.context.savedSpots[i].doggoaddress}</h4>
+                <button onClick = {this.handleDelete}>Remove</button>
+                </div>
+            )
+        })
+
 
         return (
          <div>
@@ -16,34 +57,11 @@ export default class Favorite extends React.Component {
             <Link to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
-            <Link to ='./add-review'>Review A Doggo Business</Link>
-            <br></br>
-            <br></br>
             <Link to ='./recommend'>Recommend A Business</Link>
             </Sidebar>
             <h2 className = "title">Your Saved Doggo Sites</h2>
             <div className= "container">
-                    <div className = "favorite">  
-                    <h3>Dog-Friendly Business 1</h3>
-                    <h4>Address : 123 Furry Lane , New York, NY 11201</h4>
-                    <h4>Telephone : 123-456-7891</h4>
-                    
-                    <button>Remove</button>
-                    </div>
-                    <div className = "favorite">  
-                    <h3>Dog-Friendly Business 2</h3>
-                    <h4>Address : 234 Furry Lane , New York, NY 11201</h4>
-                    <h4>Telephone : 123-456-7891</h4>
-                    
-                    <button>Remove</button>
-                    </div>
-                    <div className = "favorite">  
-                    <h3>Dog-Friendly Business 3</h3>
-                    <h4>Address : 345 Furry Lane , New York, NY 11201</h4>
-                    <h4>Telephone : 123-456-7891</h4>
-                    
-                    <button>Remove</button>
-                    </div>
+            {spots}
             </div>
             
         </div>

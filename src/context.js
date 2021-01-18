@@ -4,6 +4,11 @@ export default React.createContext({
     locations: [],
     setLocations : () => {},
     user_name: '',
-    setUserName: () => {}
+    setUserName: () => {},
+    savedSpots : [],
+    addToSaved : () => {},
+    setUserSpots : () => {},
+    deleteSpot : () => {}
+
 
 })

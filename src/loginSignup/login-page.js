@@ -4,6 +4,7 @@ import SignUp from './sign-up'
 import AuthApiService from '../client-services/auth-api-service'
 import TokenService from '../client-services/token'
 import DoggoContext from '../context'
+import config from '../config'
 
 export default class LoginPage extends React.Component {
 
@@ -30,21 +31,44 @@ export default class LoginPage extends React.Component {
             user_name: this.userInput.current.value,
             password: this.passInput.current.value 
         })
-    .then(res => {
+        .then(res => {
         
         //you need a return here to trigger the next .then
-                this.context.setUserName(this.userInput.current.value)
-                TokenService.saveAuthToken(res.authToken);
-                this.props.onValidLogin(); 
-                return ;
+            this.context.setUserName(this.userInput.current.value)
+            TokenService.saveAuthToken(res.authToken);
+            this.props.onValidLogin(); 
+
+
+
+            console.log(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`)
+            fetch(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`, {
+                headers: {
+                  'authorization':`bearer ${TokenService.getAuthToken()}`
+                }
+              })
+              .then(res => {
+                if(!res.ok){
+                  return res.json().then(e => Promise.reject(e))
+                }
+                return res.json()
+              })
+
+              .then(spots => {
+                console.log(spots)
+                this.context.setUserSpots(spots)
+              })
+              .catch(error => {
+                alert({error})
+              })
+
             })
                 
            
-    .then(() => {
-        console.log(this.props.history)
+        .then(() => {
+            console.log(this.props.history)
             this.props.history.push('/search')})
             
-    .catch(res => {
+        .catch(res => {
             this.setState({
             error: alert("Invalid username or password. Please re-enter your credentials.")
                 });

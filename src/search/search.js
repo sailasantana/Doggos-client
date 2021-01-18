@@ -4,6 +4,8 @@ import Results from '../results/results'
 import { Link } from 'react-router-dom';
 import config from '../config'
 import DoggoContext from '../context'
+import MapWrapped from '../map/map';
+import Sidebar from '../sidebar/sidebar'
 
 
 
@@ -28,7 +30,6 @@ export default class SearchForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.setState({clicked : true});
 
         const searchValues = {
             zip: this.zipInput.current.value,
@@ -36,31 +37,35 @@ export default class SearchForm extends React.Component {
            
            
         };
-        console.log(searchValues)
+        //console.log(searchValues)
 
         fetch(`${config.API_ENDPOINT}/api/search`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(searchValues)
         })
           .then(res => {
-              console.log('abc')
             if(!res.ok){
               return res.json().then(e => Promise.reject(e))
             }
             
-            return res.json()
+             return res.json()
           })
           .then(places => {
-              console.log(places)
+
             this.context.setLocations(places)
-            this.setState(places)
+            this.setState({
+                clicked : true,
+                places: places} 
+            );
+
+
           })
           .catch(error => {
-            alert({error})
-          })
+              console.log(error)
+        })
 
 
     }
@@ -68,6 +73,12 @@ export default class SearchForm extends React.Component {
     render(){
         return(
                 <div>
+                <Sidebar width={300} height={"100vh"}>
+                <Link to ='./dashboard'>Your Dashboard</Link>
+                <br></br>
+                <br></br>
+                <Link to ='./recommend'>Recommend A Business</Link>
+                </Sidebar>
                 <h1>Begin Your Search</h1>
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div className = "input">       
@@ -88,6 +99,8 @@ export default class SearchForm extends React.Component {
                 <input type="submit" value="Oh the places your doggo will go!" className="button" />
                 </form>
                 <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
+
+               
                 </div>
         )
     }
