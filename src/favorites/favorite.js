@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar'
 import DoggoContext from '../context'
 import config from '../config'
+import StarRating from './rating'
+import TokenService from '../client-services/token';
 
 
 
@@ -11,14 +13,15 @@ export default class Favorite extends React.Component {
 
     static contextType = DoggoContext;
 
-    handleDelete = () => {
+    handleDelete = (e) => {
         const id = this.props.id;
-        console.log(id)
+
   
         fetch(`${config.API_ENDPOINT}/api/${this.context.user_name}/dashboard/${id}`, {
           method: 'DELETE',
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'session_token': TokenService.getAuthToken()
           },
         })
         .then (res => {
@@ -36,35 +39,36 @@ export default class Favorite extends React.Component {
 
     }
 
-    render(){
-
-        console.log(this.context)
-
-        let spots = this.context.savedSpots.map((spot , i) => {
-            return (
-                <div className = "favorite" key = {this.context.savedSpots[i].id}> 
-                <h3 className = "title">{this.context.savedSpots[i].title}</h3>
-                <h4>{this.context.savedSpots[i].doggoaddress}</h4>
-                <button onClick = {this.handleDelete}>Remove</button>
-                </div>
-            )
-        })
-
-
+    render () {  
+        const {title , id, doggoaddress, rating} = this.props; 
+        console.log(this.props)
+  
         return (
-         <div>
-            <Sidebar width={300} height={"100vh"}>
-            <Link to ='./search'>Doggo Search</Link>
-            <br></br>
-            <br></br>
-            <Link to ='./recommend'>Recommend A Business</Link>
-            </Sidebar>
-            <h2 className = "title">Your Saved Doggo Sites</h2>
-            <div className= "container">
-            {spots}
-            </div>
+          <div className='Spot'>
+  
+            <h2 className='Spot_title'>
+              
+                {title}
             
-        </div>
+            </h2>
+            <p className='Spot_address'>
+              
+              {doggoaddress}
+          
+          </p>
+
+
+  
+            <button 
+              className='Spot_delete' 
+              type='button'
+              onClick={this.handleDelete}>
+              Remove
+  
+            </button>
+  
+           
+          </div>
         )
-    }
+      }
 }

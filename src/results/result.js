@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import TokenService from '../client-services/token';
 import config from '../config'
 import DoggoContext from '../context'
 
@@ -35,7 +36,8 @@ export default class Result extends React.Component {
        fetch(`${config.API_ENDPOINT}/api/${this.context.user_name}/dashboard`,  {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'session_token': TokenService.getAuthToken()
         },
         body: JSON.stringify(newSpot),
         })

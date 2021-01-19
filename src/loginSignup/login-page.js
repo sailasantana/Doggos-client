@@ -35,7 +35,8 @@ export default class LoginPage extends React.Component {
         
         //you need a return here to trigger the next .then
             this.context.setUserName(this.userInput.current.value)
-            TokenService.saveAuthToken(res.authToken);
+            console.log(res)
+            TokenService.saveAuthToken(res.token);
             this.props.onValidLogin(); 
 
 
@@ -43,7 +44,7 @@ export default class LoginPage extends React.Component {
             console.log(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`)
             fetch(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`, {
                 headers: {
-                  'authorization':`bearer ${TokenService.getAuthToken()}`
+                  'session_token':`${TokenService.getAuthToken()}`
                 }
               })
               .then(res => {

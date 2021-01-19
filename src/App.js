@@ -2,12 +2,13 @@ import LoginPage from './loginSignup/login-page';
 import SignUp from './loginSignup/sign-up';
 import {Route} from 'react-router-dom';
 import MapWrapped from './map/map';
-import Favorite from './favorites/favorite';
+import Favorites from './favorites/favorites';
 import './map/map.css';
 import Recommend from './recommend/recommend';
 import DoggoContext from './context'
 import React from 'react';
 import SearchForm from './search/search'
+import StarRating from './favorites/rating'
 
 class App extends React.Component {
 
@@ -39,6 +40,7 @@ class App extends React.Component {
     this.setState({ savedSpots: [...this.state.savedSpots, spot]})
   }
 
+  //validate the data types of spot.id and id and see if they are the same.
   deleteSpot = (id) => {
     const { savedSpots } = this.state
  
@@ -67,14 +69,14 @@ class App extends React.Component {
   
 
   return (
+
     <DoggoContext.Provider value={contextValues}>
 
     <div className="App">
       <Route exact path='/' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/search' component={SearchForm} />
-
-      <Route path='/dashboard' component={Favorite} />
+      <Route path='/dashboard' component={Favorites} />
       <Route path='/recommend' component={Recommend} />
     </div>
     </ DoggoContext.Provider >
@@ -83,9 +85,6 @@ class App extends React.Component {
 
   } 
 }
-
-
-
 
 
 export default App;

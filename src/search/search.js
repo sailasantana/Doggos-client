@@ -6,6 +6,7 @@ import config from '../config'
 import DoggoContext from '../context'
 import MapWrapped from '../map/map';
 import Sidebar from '../sidebar/sidebar'
+import TokenService from '../client-services/token'
 
 
 
@@ -38,11 +39,13 @@ export default class SearchForm extends React.Component {
            
         };
         //console.log(searchValues)
-
+        console.log(TokenService.getAuthToken())
         fetch(`${config.API_ENDPOINT}/api/search`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'session_token': TokenService.getAuthToken()
+
         },
         body: JSON.stringify(searchValues)
         })
@@ -94,6 +97,15 @@ export default class SearchForm extends React.Component {
                 <option value="Pet Supplies">Pet Supplies</option>
                 <option value="Veterinarian Services">Veterinarian Services</option>
                 <option value="Dog Beaches">Beaches</option>
+                <option value="Pet Hotels">Hotels</option>
+                <option value="Groomers">Groomers</option>
+                <option value="Hiking Trails"> Hiking Trails</option>
+                <option value="Brunch">Brunch Spots</option>
+
+
+
+
+
                 </select>
                 </div>
                 <input type="submit" value="Oh the places your doggo will go!" className="button" />

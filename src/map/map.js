@@ -25,9 +25,7 @@ class Map extends React.Component {
 
 
     render(){
-        // console.log(this.context.locations.results[0].geometry.location.lat)
-        // console.log(this.context)
-        // console.log(this.state.selected.geometry)
+   
   
     return (
         <div>
