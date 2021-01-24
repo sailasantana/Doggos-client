@@ -15,11 +15,12 @@ export default class Result extends React.Component {
 
         this.state = {
             error : null,
-            selectedPlaceId: ''
+            selectedPlaceId: '',
+            learnMore:true,
+            results : []
         }
     }
    
-
 
     handleAdd = (e) => {
      
@@ -53,9 +54,19 @@ export default class Result extends React.Component {
     }
 
     handleGet = (event) => {
-
-        let place_id = this.props.place_id
+        const place_id = event.target.value;
         this.setState({selectedPlaceId:place_id})
+        this.setState({learnMore:true})
+
+        // let placeInfo = this.context.locations.results.findIndex( (place, i) => {
+        //     if(this.context.locations.results[i].place_id == place_id){
+        //         return place
+        //     }
+        //      else return ;
+        // })
+        // this.setState({id: placeInfo})
+
+
      
         fetch(`${config.API_ENDPOINT}/api/details/${place_id}`,  {
          method: 'GET',
@@ -65,13 +76,15 @@ export default class Result extends React.Component {
          }
          })
          .then(res => {
+             console.log(res)
              if(!res.ok){
                  return res.json().then(e => Promise.reject(e))
              }
              return res.json()
          })
          .then(details => {
-             this.context.setDetailsToDisplay(details)
+             console.log(details)
+             this.setState({results:details})
             })
          .catch(error => {
              alert({error})
@@ -86,8 +99,10 @@ export default class Result extends React.Component {
     
 
     render () {  
-      const {title , address, overall_rating, place_id, id} = this.props; 
-          
+      const {title , address, overall_rating, place_id, id} = this.props;
+      
+      
+         console.log(this.state.id)
 
         return (
         <div className='Result'>
@@ -111,20 +126,19 @@ export default class Result extends React.Component {
             className='Get_details' 
             onClick = {this.handleGet}
             type='button' 
-            value = {place_id}    
-            >
-           
+            value = {place_id}>           
             Learn More
          </button>
-          {this.context.detailsToDisplay.result ? 
+        
+          {this.state.results && this.state.learnMore ? 
                         <div>
-                        <p>{this.context.detailsToDisplay.result.website}</p>
-                        <p>{this.context.detailsToDisplay.result.formatted_phone_number}</p>
+                        {/* <p>{this.state.results.result.website}</p>
+                        <p>{this.state.results.result.formatted_phone_number}</p>
                         <ul> <p>Reviews:</p>
-                            <li>"{this.context.detailsToDisplay.result.reviews[0].text}" - {this.context.detailsToDisplay.result.reviews[0].author_name} </li>
-                            <li>"{this.context.detailsToDisplay.result.reviews[2].text}" - {this.context.detailsToDisplay.result.reviews[2].author_name} </li>
-                            <li>"{this.context.detailsToDisplay.result.reviews[4].text}" - {this.context.detailsToDisplay.result.reviews[4].author_name} </li>
-                        </ul>
+                            <li>"{this.state.results.result.reviews[0].text}" - {this.context.detailsToDisplay.result.reviews[0].author_name} </li>
+                            <li>"{this.state.results.result.reviews[2].text}" - {this.context.detailsToDisplay.result.reviews[2].author_name} </li>
+                            <li>"{this.state.results.result.reviews[4].text}" - {this.context.detailsToDisplay.result.reviews[4].author_name} </li>
+                        </ul> */}
                         <button onClick = {this.handleClick}>x</button>
         
                         </div> : null}

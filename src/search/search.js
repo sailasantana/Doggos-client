@@ -28,6 +28,33 @@ export default class SearchForm extends React.Component {
         }
     }
 
+    componentDidMount(){
+        const token = TokenService.getAuthToken();
+        const options = {
+            method : 'GET',
+            headers : {
+                'session_token' : token
+            }
+        }
+
+        fetch( `${config.API_ENDPOINT}/api/validate`, options )
+            .then( response => {
+                if( response.ok ){
+                    return response.json();
+                }
+
+                throw new Error( response.statusText );
+            })
+            .then( responseJson => {
+                this.setState({
+                    message : responseJson.message
+                })
+            })
+            .catch( err => {
+                console.log( err.message );
+                this.props.history.push( '/login' );
+            });
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();

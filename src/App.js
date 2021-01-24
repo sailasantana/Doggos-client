@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   updateUserName = (user) => {
-
     this.setState({user_name: user})
     
   }
@@ -47,14 +46,11 @@ class App extends React.Component {
     this.setState({ savedSpots: [...this.state.savedSpots, spot]})
   }
 
-  //validate the data types of spot.id and id and see if they are the same.
   deleteSpot = (id) => {
     const { savedSpots } = this.state
  
-    console.log(typeof(id))
     this.setState({
-      posts: savedSpots.filter (spot => {
-        console.log(typeof(spot.id))
+      savedSpots: savedSpots.filter (spot => {
         return spot.id !== id
       })
     })
