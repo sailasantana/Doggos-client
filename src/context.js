@@ -8,7 +8,9 @@ export default React.createContext({
     savedSpots : [],
     addToSaved : () => {},
     setUserSpots : () => {},
-    deleteSpot : () => {}
+    deleteSpot : () => {},
+    detailsToDisplay: [],
+    setDetailsToDisplay : () => {}
 
 
 })

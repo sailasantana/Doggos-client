@@ -4,6 +4,8 @@ import favorite from './favorite'
 import DoggoContext from '../context'
 import Favorite from './favorite';
 import Sidebar from '../sidebar/sidebar';
+import LogOut from '../loginSignup/logout'
+
 
 
 export default class Favorites extends React.Component {

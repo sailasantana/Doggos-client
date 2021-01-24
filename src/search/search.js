@@ -7,6 +7,7 @@ import DoggoContext from '../context'
 import MapWrapped from '../map/map';
 import Sidebar from '../sidebar/sidebar'
 import TokenService from '../client-services/token'
+import LogOut from '../loginSignup/logout'
 
 
 
@@ -108,7 +109,7 @@ export default class SearchForm extends React.Component {
 
                 </select>
                 </div>
-                <input type="submit" value="Oh the places your doggo will go!" className="button" />
+                <input type="submit" value="Fetch!" className="button" />
                 </form>
                 <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
 

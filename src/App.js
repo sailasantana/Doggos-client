@@ -9,6 +9,8 @@ import DoggoContext from './context'
 import React from 'react';
 import SearchForm from './search/search'
 import StarRating from './favorites/rating'
+import LogOut from './loginSignup/logout'
+import Welcome from './welcome/welcome'
 
 class App extends React.Component {
 
@@ -17,7 +19,8 @@ class App extends React.Component {
     this.state = {
       places : [],
       user_name: '',
-      savedSpots : []
+      savedSpots : [],
+      detailsToDisplay: []
     }
   }
 
@@ -36,6 +39,10 @@ class App extends React.Component {
 
   }
 
+  setDetailsToDisplay = details => {
+    this.setState({detailsToDisplay: details})
+  }
+
   addToSaved = (spot) => {
     this.setState({ savedSpots: [...this.state.savedSpots, spot]})
   }
@@ -44,8 +51,10 @@ class App extends React.Component {
   deleteSpot = (id) => {
     const { savedSpots } = this.state
  
+    console.log(typeof(id))
     this.setState({
       posts: savedSpots.filter (spot => {
+        console.log(typeof(spot.id))
         return spot.id !== id
       })
     })
@@ -62,9 +71,10 @@ class App extends React.Component {
       savedSpots : this.state.savedSpots,
       addToSaved : this.addToSaved,
       setUserSpots : this.setUserSpots,
-      deleteSpot : this.deleteSpot
+      deleteSpot : this.deleteSpot,
+      setDetailsToDisplay: this.setDetailsToDisplay,
+      detailsToDisplay: this.state.detailsToDisplay
       
-
     }
   
 
@@ -73,10 +83,14 @@ class App extends React.Component {
     <DoggoContext.Provider value={contextValues}>
 
     <div className="App">
-      <Route exact path='/' component={LoginPage} />
+    <Route exact path='/' component={Welcome} />
+      <Route exact path='/login' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
+      <Route path='/search' component={LogOut} />
       <Route path='/search' component={SearchForm} />
+      <Route path='/dashboard' component={LogOut} />
       <Route path='/dashboard' component={Favorites} />
+      <Route path='/recommend' component={LogOut} />
       <Route path='/recommend' component={Recommend} />
     </div>
     </ DoggoContext.Provider >

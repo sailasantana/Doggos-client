@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar'
+import LogOut from '../loginSignup/logout'
+
 
 
 export default class Recommend extends React.Component {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Result from './result'
 import MapWrapped from '../map/map'
 import DoggoContext from '../context'
+import LogOut from '../loginSignup/logout';
 
 
 export default class Results extends React.Component {
@@ -23,8 +24,9 @@ export default class Results extends React.Component {
                      <Result 
                         title = {this.context.locations.results[i].name}
                         address = {this.context.locations.results[i].formatted_address}
-                        operational = {this.context.locations.results[i].business_status}
                         overall_rating = {this.context.locations.results[i].rating}
+                        place_id = {this.context.locations.results[i].place_id}
+                        id ={this.context.locations.results[i].id}
                      
                         />
                     </li>
