@@ -114,7 +114,7 @@ export default class SearchForm extends React.Component {
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div className = "input">       
                 <label for="fname" >Zip Code:</label>
-                <input ref = {this.zipInput} type="text" id="zip" name="zip" value="10011" />
+                <input ref = {this.zipInput} type="text" id="zip" name="zip" defaultValue = "10011"/>
                 </div>
                 <div className = "input"> 
                 <label for="type">Type of Activity:</label>

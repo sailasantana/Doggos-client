@@ -1,18 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import Result from './result'
 import MapWrapped from '../map/map'
 import DoggoContext from '../context'
-import LogOut from '../loginSignup/logout';
+import LogOut from '../loginSignup/logout'
+import config from '../config'
+import TokenService from '../client-services/token'
 
 
 export default class Results extends React.Component {
 
     static contextType = DoggoContext;
 
-   
+    componentDidMount(){
+        const token = TokenService.getAuthToken();
+        const options = {
+            method : 'GET',
+            headers : {
+                'session_token' : token
+            }
+        }
+
+        fetch( `${config.API_ENDPOINT}/api/validate`, options )
+            .then( response => {
+                if( response.ok ){
+                    return response.json();
+                }
+
+                throw new Error( response.statusText );
+            })
+            .then( responseJson => {
+                this.setState({
+                    message : responseJson.message
+                })
+            })
+            .catch( err => {
+                console.log( err.message );
+                this.props.history.push( '/login' );
+            });
+    }
+
 
     render(){
+
+        console.log(process.env)
     
     const results = this.context.locations.results
         
@@ -43,7 +74,7 @@ export default class Results extends React.Component {
            <div style={{ width: "75vw", height: "100vh" }} className = "map"> 
              
                 <MapWrapped       
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAZ9e8yrmg_qJFoBB7Giz4ZKzQNPl7fDm4`}
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${config.key}`}
                 loadingElement={<div style={{ height: "100%" }} />}
                 containerElement={<div style={{ height: "100%" }} />}
                 mapElement={<div style={{ height: "100%" }} /> }

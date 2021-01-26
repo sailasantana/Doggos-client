@@ -11,6 +11,8 @@ import {
   InfoWindow
 } from "react-google-maps";
 import mapStyles from "./mapStyles";
+import config from '../config';
+import TokenService from '../client-services/token'
  
  
 class Map extends React.Component {
@@ -23,8 +25,39 @@ class Map extends React.Component {
         
     }
 
+    componentDidMount(){
+      const token = TokenService.getAuthToken();
+      const options = {
+          method : 'GET',
+          headers : {
+              'session_token' : token
+          }
+      }
+
+      fetch( `${config.API_ENDPOINT}/api/validate`, options )
+          .then( response => {
+              if( response.ok ){
+                  return response.json();
+              }
+
+              throw new Error( response.statusText );
+          })
+          .then( responseJson => {
+              this.setState({
+                  message : responseJson.message
+              })
+          })
+          .catch( err => {
+              console.log( err.message );
+              this.props.history.push( '/login' );
+          });
+  }
+
+
 
     render(){
+
+      console.log(this.state.selected)
    
   
     return (
@@ -50,15 +83,15 @@ class Map extends React.Component {
                 }}
             /> 
             ))} 
-        {this.state.selected !== null && (
+        {this.state.selected.geometry && (
         <InfoWindow
           onCloseClick={() => {
             this.setState({selected:null});
         }}
           position={{
 
-            lat: 40.712776,
-            lng: -74.005974
+            lat: this.state.selected.geometry.location.lat,
+            lng: this.state.selected.geometry.location.lng
           }}
         >
           <div>

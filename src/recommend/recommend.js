@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar'
 import LogOut from '../loginSignup/logout'
+import config from '../config'
+import TokenService from '../client-services/token';
+
 
 
 
@@ -10,6 +13,35 @@ export default class Recommend extends React.Component {
     state = {
         submit: false 
     }
+
+    componentDidMount(){
+        const token = TokenService.getAuthToken();
+        const options = {
+            method : 'GET',
+            headers : {
+                'session_token' : token
+            }
+        }
+
+        fetch( `${config.API_ENDPOINT}/api/validate`, options )
+            .then( response => {
+                if( response.ok ){
+                    return response.json();
+                }
+
+                throw new Error( response.statusText );
+            })
+            .then( responseJson => {
+                this.setState({
+                    message : responseJson.message
+                })
+            })
+            .catch( err => {
+                console.log( err.message );
+                this.props.history.push( '/login' );
+            });
+    }
+
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -22,8 +54,6 @@ export default class Recommend extends React.Component {
 
     render(){
 
-
-
         return(
             <div>
             <Sidebar width={300} height={"100vh"}>
@@ -31,9 +61,7 @@ export default class Recommend extends React.Component {
             <br></br>
             <br></br>
             <Link to ='./dashboard'>My Dashboard</Link>
-            <br></br>
-            <br></br>
-            <Link to ='./add-review'>Review A Doggo Business</Link>
+            
             </Sidebar>
 
             <form className ='form-container' onSubmit = {this.handleSubmit} >

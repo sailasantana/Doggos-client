@@ -6,6 +6,7 @@ import DoggoContext from '../context'
 
 
 
+
 export default class Result extends React.Component {
 
     static contextType = DoggoContext
@@ -16,10 +17,39 @@ export default class Result extends React.Component {
         this.state = {
             error : null,
             selectedPlaceId: '',
-            learnMore:true,
+            learnMore:false,
             results : []
         }
     }
+
+    componentDidMount(){
+        const token = TokenService.getAuthToken();
+        const options = {
+            method : 'GET',
+            headers : {
+                'session_token' : token
+            }
+        }
+
+        fetch( `${config.API_ENDPOINT}/api/validate`, options )
+            .then( response => {
+                if( response.ok ){
+                    return response.json();
+                }
+
+                throw new Error( response.statusText );
+            })
+            .then( responseJson => {
+                this.setState({
+                    message : responseJson.message
+                })
+            })
+            .catch( err => {
+                console.log( err.message );
+                this.props.history.push( '/login' );
+            });
+    }
+
    
 
     handleAdd = (e) => {
@@ -93,7 +123,6 @@ export default class Result extends React.Component {
 
 
     handleClick = (event) => {
-   
         this.setState({learnMore:false})
     }
     
@@ -101,9 +130,6 @@ export default class Result extends React.Component {
     render () {  
       const {title , address, overall_rating, place_id, id} = this.props;
       
-      
-         console.log(this.state.id)
-
         return (
         <div className='Result'>
 
@@ -130,15 +156,15 @@ export default class Result extends React.Component {
             Learn More
          </button>
         
-          {this.state.results && this.state.learnMore ? 
+          {this.state.results.result && this.state.learnMore ? 
                         <div>
-                        {/* <p>{this.state.results.result.website}</p>
+                        <p>{this.state.results.result.website}</p>
                         <p>{this.state.results.result.formatted_phone_number}</p>
                         <ul> <p>Reviews:</p>
-                            <li>"{this.state.results.result.reviews[0].text}" - {this.context.detailsToDisplay.result.reviews[0].author_name} </li>
-                            <li>"{this.state.results.result.reviews[2].text}" - {this.context.detailsToDisplay.result.reviews[2].author_name} </li>
-                            <li>"{this.state.results.result.reviews[4].text}" - {this.context.detailsToDisplay.result.reviews[4].author_name} </li>
-                        </ul> */}
+                            <li>"{this.state.results.result.reviews[0].text}" - {this.state.results.result.reviews[0].author_name} </li>
+                            <li>"{this.state.results.result.reviews[2].text}" - {this.state.results.result.reviews[2].author_name} </li>
+                            <li>"{this.state.results.result.reviews[4].text}" - {this.state.results.result.reviews[4].author_name} </li>
+                        </ul>
                         <button onClick = {this.handleClick}>x</button>
         
                         </div> : null}

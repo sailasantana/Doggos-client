@@ -38,9 +38,6 @@ class App extends React.Component {
 
   }
 
-  setDetailsToDisplay = details => {
-    this.setState({detailsToDisplay: details})
-  }
 
   addToSaved = (spot) => {
     this.setState({ savedSpots: [...this.state.savedSpots, spot]})
@@ -67,10 +64,7 @@ class App extends React.Component {
       savedSpots : this.state.savedSpots,
       addToSaved : this.addToSaved,
       setUserSpots : this.setUserSpots,
-      deleteSpot : this.deleteSpot,
-      setDetailsToDisplay: this.setDetailsToDisplay,
-      detailsToDisplay: this.state.detailsToDisplay
-      
+      deleteSpot : this.deleteSpot      
     }
   
 
