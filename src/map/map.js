@@ -62,9 +62,10 @@ class Map extends React.Component {
   
     return (
         <div>
+          {this.context.locations ?
         <GoogleMap
             defaultZoom={12}
-            defaultCenter={{lat:40.712776, lng:-74.005974}}
+            defaultCenter={{lat:this.context.locations.results[0].geometry.location.lat, lng:this.context.locations.results[0].geometry.location.lng}}
             defaultOptions={{ styles: mapStyles }}
         >
             {this.context.locations.results.map((result , i)=> (
@@ -101,6 +102,7 @@ class Map extends React.Component {
         </InfoWindow>
       )}
         </GoogleMap>
+        : null }
         </div>
      );
     }
