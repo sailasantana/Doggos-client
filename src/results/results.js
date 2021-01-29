@@ -43,11 +43,8 @@ export default class Results extends React.Component {
 
     render(){
 
-        console.log(process.env)
     
     const results = this.context.locations.results
-    console.log(this.context.locations.results.length)
-    console.log(results)
         
      const searchResults = results.map( (places, i) => {
 
@@ -69,25 +66,28 @@ export default class Results extends React.Component {
 
 
       )
-      
-      return (
-        <div>  
-            {results ? 
-            <div>
-           <div>{searchResults}</div>
-           <div style={{ width: "75vw", height: "100vh" }} className = "map"> 
-             
-                <MapWrapped       
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${config.key}`}
-                loadingElement={<div style={{ height: "100%" }} />}
-                containerElement={<div style={{ height: "100%" }} />}
-                mapElement={<div style={{ height: "100%" }} /> }
-                />
-          
-            </div>
-            </div>
-            : 'No results found - Please try a different zip'}
-        </div>  ) 
+
+
+             return(
+                 <div>
+                     {this.context.locations.results.length > 0 ?
+                     <div>
+                     <div>{searchResults}</div>
+                     <div style={{ width: "75vw", height: "100vh" }} className = "map"> 
+                          <MapWrapped       
+                          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${config.key}`}
+                          loadingElement={<div style={{ height: "100%" }} />}
+                          containerElement={<div style={{ height: "100%" }} />}
+                          mapElement={<div style={{ height: "100%" }} /> }
+                          />
+                    
+                      </div>
+                      </div>
+                      : 'No results - Please try a different zip'
+                     }
+                     </div>
+                
+             )
    
     }
 

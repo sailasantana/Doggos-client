@@ -64,8 +64,9 @@ class Map extends React.Component {
         <div>
           {this.context.locations ?
         <GoogleMap
-            defaultZoom={12}
-            defaultCenter={{lat:this.context.locations.results[0].geometry.location.lat, lng:this.context.locations.results[0].geometry.location.lng}}
+            defaultZoom={4.5}
+            defaultCenter={{lat:39.011902,lng:-98.484245}}
+            //defaultCenter={{lat:this.context.locations.results[0].geometry.location.lat, lng:this.context.locations.results[0].geometry.location.lng}}
             defaultOptions={{ styles: mapStyles }}
         >
             {this.context.locations.results.map((result , i)=> (

@@ -95,6 +95,8 @@ export default class SearchForm extends React.Component {
 
           })
           .catch(error => {
+            this.context.setLocations({ results: [] })
+
               console.log(error)
         })
 
