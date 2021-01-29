@@ -25,8 +25,7 @@ export default class LoginPage extends React.Component {
     // handle login authentication and validation on submit. //
     handleJwtLoginAuth = e => {
         e.preventDefault();
-        //console.log(this.userInput.current.value)
-        //console.log(this.passInput.current.value)
+       
      
         AuthApiService.postLogin({
             user_name: this.userInput.current.value,
@@ -34,15 +33,10 @@ export default class LoginPage extends React.Component {
         })
         .then(res => {
         
-        //you need a return here to trigger the next .then
             this.context.setUserName(this.userInput.current.value)
-            console.log(res)
             TokenService.saveAuthToken(res.token);
             this.props.onValidLogin(); 
 
-
-
-            console.log(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`)
             fetch(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`, {
                 headers: {
                   'session_token':`${TokenService.getAuthToken()}`
@@ -56,7 +50,6 @@ export default class LoginPage extends React.Component {
               })
 
               .then(spots => {
-                console.log(spots)
                 this.context.setUserSpots(spots)
               })
               .catch(error => {
@@ -67,7 +60,6 @@ export default class LoginPage extends React.Component {
                 
            
         .then(() => {
-            console.log(this.props.history)
             this.props.history.push('/search')})
             
         .catch(res => {

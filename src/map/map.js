@@ -84,7 +84,7 @@ class Map extends React.Component {
                 }}
             /> 
             ))} 
-        {this.state.selected.geometry && (
+        {this.state.selected && this.state.selected.geometry && (
         <InfoWindow
           onCloseClick={() => {
             this.setState({selected:null});

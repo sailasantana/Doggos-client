@@ -113,7 +113,7 @@ export default class SearchForm extends React.Component {
                 <h1>Begin Your Search</h1>
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div className = "input">       
-                <label for="fname" >Zip Code:</label>
+                <label for="fname" >5 Digit Zip Code (US Only):</label>
                 <input ref = {this.zipInput} type="text" id="zip" name="zip" defaultValue = "10011"/>
                 </div>
                 <div className = "input"> 

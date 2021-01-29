@@ -46,6 +46,8 @@ export default class Results extends React.Component {
         console.log(process.env)
     
     const results = this.context.locations.results
+    console.log(this.context.locations.results.length)
+    console.log(results)
         
      const searchResults = results.map( (places, i) => {
 
@@ -69,7 +71,9 @@ export default class Results extends React.Component {
       )
       
       return (
-        <div>    
+        <div>  
+            {results ? 
+            <div>
            <div>{searchResults}</div>
            <div style={{ width: "75vw", height: "100vh" }} className = "map"> 
              
@@ -81,6 +85,8 @@ export default class Results extends React.Component {
                 />
           
             </div>
+            </div>
+            : 'No results found - Please try a different zip'}
         </div>  ) 
    
     }
