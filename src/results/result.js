@@ -88,14 +88,6 @@ export default class Result extends React.Component {
         this.setState({selectedPlaceId:place_id})
         this.setState({learnMore:true})
 
-        // let placeInfo = this.context.locations.results.findIndex( (place, i) => {
-        //     if(this.context.locations.results[i].place_id == place_id){
-        //         return place
-        //     }
-        //      else return ;
-        // })
-        // this.setState({id: placeInfo})
-
 
      
         fetch(`${config.API_ENDPOINT}/api/details/${place_id}`,  {

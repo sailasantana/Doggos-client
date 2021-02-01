@@ -51,37 +51,37 @@ export default class Results extends React.Component {
 
     
     let revised = () => {
-
-
+        
         if(!results){
             return 'No Results Found - Please try a different zip'
-        }
-        
+        }       
         else {
 
          return results.filter((result,i) => {
-         console.log(this.context.currentZip)
-   
-         return result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1) == this.context.currentZip.slice(0,-1)})
-
-
+          //console.log(typeof(result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1)))   
+         //console.log(result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1), this.context.currentZip.slice(0,-1))
+           let zip = this.context.currentZip
+           console.log(result.formatted_address)
+           let zips = result.formatted_address
+           return zips.slice(-20,-16) == zip.slice(0,-1)})
       
             }
         } 
 
-    console.log('filter results',revised())
+    const filteredResults =  revised() 
+    console.log('filter results',filteredResults)
 
-     const searchResults = results.map( (places, i) => {
+     const searchResults = filteredResults.map( (place, i) => {
 
             return (
-                <ul key = {this.context.locations.results[i].id}>
-                    <li className = {this.context.locations.results[i].id}>
+                <ul key = {place.id}>
+                    <li className = {place.id}>
                      <Result 
-                        title = {this.context.locations.results[i].name}
-                        address = {this.context.locations.results[i].formatted_address}
-                        overall_rating = {this.context.locations.results[i].rating}
-                        place_id = {this.context.locations.results[i].place_id}
-                        id ={this.context.locations.results[i].id}
+                        title = {place.name}
+                        address = {place.formatted_address}
+                        overall_rating = {place.rating}
+                        place_id = {place.place_id}
+                        id ={place.id}
                      
                         />
                     </li>
@@ -95,7 +95,7 @@ export default class Results extends React.Component {
 
              return(
                  <div>
-                     {this.context.locations.results.length > 0 ?
+                     {filteredResults.length > 0 ?
                      <div>
                      <div>{searchResults}</div>
                      <div style={{ width: "75vw", height: "100vh" }} className = "map"> 

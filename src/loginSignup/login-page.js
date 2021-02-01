@@ -5,7 +5,7 @@ import AuthApiService from '../client-services/auth-api-service'
 import TokenService from '../client-services/token'
 import DoggoContext from '../context'
 import config from '../config'
-import './login-signup.css'
+import './login.css'
 
 export default class LoginPage extends React.Component {
 
@@ -34,27 +34,10 @@ export default class LoginPage extends React.Component {
         .then(res => {
         
             this.context.setUserName(this.userInput.current.value)
+            localStorage.setItem( 'user_name', this.userInput.current.value );
+            
             TokenService.saveAuthToken(res.token);
             this.props.onValidLogin(); 
-
-            fetch(`${config.API_ENDPOINT}/api/${this.userInput.current.value}/dashboard`, {
-                headers: {
-                  'session_token':`${TokenService.getAuthToken()}`
-                }
-              })
-              .then(res => {
-                if(!res.ok){
-                  return res.json().then(e => Promise.reject(e))
-                }
-                return res.json()
-              })
-
-              .then(spots => {
-                this.context.setUserSpots(spots)
-              })
-              .catch(error => {
-                alert({error})
-              })
 
             })
                 
@@ -74,18 +57,23 @@ export default class LoginPage extends React.Component {
     render() {
 
           return(
-            <div className="section">
-            
-                    <h4 className="mb-4 pb-3">Log In</h4>
-                    <form onSubmit={this.handleJwtLoginAuth}>
-                      <input type="text" ref = {this.userInput}  name="user" id="user" className="form-style" placeholder="Your Username"  autocomplete="off"/>
-                      <input type="password" ref = {this.passInput} name="password" id="password" className="form-style" placeholder="Your Password" i autocomplete="off"/>
-                      <button className="btn mt-4">submit</button>
+            <div className="container">
+                <div className="left">
+                    <div className="header">
+                    <h2 className="animation a1">DoggosWelcome</h2>
+                    <h4 className="animation a2">Explore over thousands of dog-friendly places to stay, play, and eat with your dog! <br/><br/> Log in to get started</h4>
+                    </div>
+                    <form className="login-form" onSubmit={this.handleJwtLoginAuth}>
+                    <input type="text" ref = {this.userInput}  name="user" id="user" className="form-field animation a3" placeholder="Username"/>
+                    <input type="password" ref = {this.passInput} name="password" id="password" className="form-field animation a4" placeholder="Password"/>
+                    <button className="animation a6">LOGIN</button>
                     </form>
                     <Link to = '/sign-up'>New User? Sign up here</Link>
+                </div>
+                <div className="right"></div>
+            </div>
                                   
               
-        </div>
 
 
 

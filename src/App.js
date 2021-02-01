@@ -5,12 +5,15 @@ import MapWrapped from './map/map';
 import Favorites from './favorites/favorites';
 import './map/map.css';
 import Recommend from './recommend/recommend';
-import DoggoContext from './context'
+import DoggoContext from './context';
 import React from 'react';
-import SearchForm from './search/search'
-import StarRating from './favorites/rating'
-import LogOut from './loginSignup/logout'
-import Welcome from './welcome/welcome'
+import SearchForm from './search/search';
+import StarRating from './favorites/rating';
+import LogOut from './loginSignup/logout';
+import TokenService from './client-services/token';
+import config from './config';
+import { withRouter } from 'react-router-dom';
+
 
 class App extends React.Component {
 
@@ -23,6 +26,36 @@ class App extends React.Component {
       detailsToDisplay: [],
       currentZip: ''
     }
+  }
+
+  componentDidMount( ){
+
+    let user_name = localStorage.getItem('user_name')
+    
+    this.setState({user_name:user_name})
+
+    fetch(`${config.API_ENDPOINT}/api/${user_name}/dashboard`, {
+      headers: {
+        'session_token':`${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return res.json().then(e => Promise.reject(e))
+      }
+      console.log(res)
+      return res.json()
+    })
+
+    .then(spots => {
+      console.log(spots)
+      
+      this.setUserSpots(spots)
+    })
+    .catch(error => {
+      alert('You must be logged in to continue')
+      this.props.history.push('/login')
+    })
   }
 
   getPlaces = (places) => {
@@ -81,7 +114,6 @@ class App extends React.Component {
     <DoggoContext.Provider value={contextValues}>
 
     <div className="App">
-    <Route exact path='/' component={Welcome} />
       <Route exact path='/login' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/search' component={LogOut} />
@@ -99,4 +131,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default withRouter(App);

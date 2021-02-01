@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AuthApiService from '../client-services/auth-api-service'
+import './signup.css'
 
 
 
@@ -49,20 +50,20 @@ export default class SignUp extends React.Component {
     render(){
 
         return(
-            <div>
-                <form onSubmit = {this.handleNewUser}>
-                    <h2>Sign Up</h2>
-                    <label>First Name</label>
-                    <input ref = {this.fNameInput} type = 'text' name= 'first_name'/>
-                    <label>Last Name</label>
-                    <input ref ={this.lNameInput} type = 'text' name= 'last_name'/>
-                    <label>Username</label>
-                    <input ref ={this.userInput} type = 'text' name= 'user_name'/>
-                    <label>Password</label>
-                    <input ref = {this.passInput} type = 'password' name= 'password'/>
-                    <button>Sign Up</button>
-
-                </form>
+            <div class="container">
+                <div class="center">
+                    <div class="header">
+                    <h2 >What are you waiting for? Sign up already!</h2>
+                    <img src = "https://thumbs.gfycat.com/GrossContentBluemorphobutterfly-size_restricted.gif"/>
+                    </div>
+                    <form className="signup-form" onSubmit = {this.handleNewUser}>
+                    <input ref = {this.fNameInput} type = 'text' name= 'first_name' id='first_name' class="form-field" placeholder="First Name"/>
+                    <input  ref ={this.lNameInput} type = 'text' name= 'last_name' id='last_name' class="form-field" placeholder="Last Name"/>
+                    <input type="text" ref = {this.userInput}  name="user" id="user" class="form-field" placeholder="Username"/>
+                    <input type="password" ref = {this.passInput} name="password" id="password" class="form-field" placeholder="Password"/>
+                    <button >Sign Up</button>
+                    </form>
+                </div>
             </div>
         )
     }
