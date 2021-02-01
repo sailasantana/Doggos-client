@@ -43,9 +43,34 @@ export default class Results extends React.Component {
 
     render(){
 
-    
     const results = this.context.locations.results
+
+    // console.log(results)
+    // console.log(this.context.currentZip.slice(0,-1))
+    // console.log(this.context.locations.results[0].formatted_address.split(',')[2].split(' ')[2].slice(0,-1) )
+
+    
+    let revised = () => {
+
+
+        if(!results){
+            return 'No Results Found - Please try a different zip'
+        }
         
+        else {
+
+         return results.filter((result,i) => {
+         console.log(this.context.currentZip)
+   
+         return result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1) == this.context.currentZip.slice(0,-1)})
+
+
+      
+            }
+        } 
+
+    console.log('filter results',revised())
+
      const searchResults = results.map( (places, i) => {
 
             return (

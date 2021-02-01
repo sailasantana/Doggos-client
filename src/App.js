@@ -20,7 +20,8 @@ class App extends React.Component {
       places : [],
       user_name: '',
       savedSpots : [],
-      detailsToDisplay: []
+      detailsToDisplay: [],
+      currentZip: ''
     }
   }
 
@@ -54,6 +55,11 @@ class App extends React.Component {
 
   }
 
+  setCurrentZip = (zip) => {
+    this.setState({currentZip: zip})
+
+  }
+
   render(){
 
     const contextValues = {
@@ -64,7 +70,9 @@ class App extends React.Component {
       savedSpots : this.state.savedSpots,
       addToSaved : this.addToSaved,
       setUserSpots : this.setUserSpots,
-      deleteSpot : this.deleteSpot      
+      deleteSpot : this.deleteSpot,
+      currentZip: this.state.currentZip,
+      setCurrentZip: this.setCurrentZip      
     }
   
 

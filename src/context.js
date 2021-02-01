@@ -8,6 +8,8 @@ export default React.createContext({
     savedSpots : [],
     addToSaved : () => {},
     setUserSpots : () => {},
-    deleteSpot : () => {}
+    deleteSpot : () => {},
+    currentZip: '',
+    setCurrentZip: () => {}
 
 })

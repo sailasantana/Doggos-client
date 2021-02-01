@@ -16,8 +16,6 @@ import TokenService from '../client-services/token'
  
  
 class Map extends React.Component {
-    //const context = useContext(DoggoContext)
-    //const [selected, setSelected] = useState(null);
     static contextType = DoggoContext
 
     state = {
@@ -57,16 +55,15 @@ class Map extends React.Component {
 
     render(){
 
-      console.log(this.state.selected)
    
   
     return (
         <div>
           {this.context.locations ?
         <GoogleMap
-            defaultZoom={4.5}
-            defaultCenter={{lat:39.011902,lng:-98.484245}}
-            //defaultCenter={{lat:this.context.locations.results[0].geometry.location.lat, lng:this.context.locations.results[0].geometry.location.lng}}
+            defaultZoom={12}
+            initialCenter={{lat:39.011902,lng:-98.484245}}
+            center={{lat:this.context.locations.results[0].geometry.location.lat, lng:this.context.locations.results[0].geometry.location.lng}}
             defaultOptions={{ styles: mapStyles }}
         >
             {this.context.locations.results.map((result , i)=> (

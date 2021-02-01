@@ -59,15 +59,13 @@ export default class SearchForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-
         const searchValues = {
             zip: this.zipInput.current.value,
-            type: this.typeInput.current.value
-           
-           
+            type: this.typeInput.current.value   
         };
-        //console.log(searchValues)
-        console.log(TokenService.getAuthToken())
+
+        this.context.setCurrentZip(this.zipInput.current.value)
+
         fetch(`${config.API_ENDPOINT}/api/search`, {
         method: 'POST',
         headers: {
