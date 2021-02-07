@@ -116,11 +116,8 @@ class App extends React.Component {
     <div className="App">
       <Route exact path='/login' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
-      <Route path='/search' component={LogOut} />
       <Route path='/search' component={SearchForm} />
-      <Route path='/dashboard' component={LogOut} />
       <Route path='/dashboard' component={Favorites} />
-      <Route path='/recommend' component={LogOut} />
       <Route path='/recommend' component={Recommend} />
     </div>
     </ DoggoContext.Provider >

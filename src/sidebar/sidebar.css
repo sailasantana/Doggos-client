@@ -13,10 +13,8 @@
     height: 50px;
     border-top-right-radius: 10rem;
     border-bottom-right-radius: 9rem;
-    width: 20px;
     position: absolute;
     outline: none;
-    z-index: 1;
     background-color: rgba(0, 1, 2, 0.693);
     border-color: rgba(0, 1, 2, 0.693);
     border-left: 0;

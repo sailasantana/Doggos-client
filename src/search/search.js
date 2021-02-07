@@ -101,15 +101,27 @@ export default class SearchForm extends React.Component {
 
     }
 
+    handleLogOut = () => {
+
+        TokenService.clearAuthToken()
+        console.log(this.props)
+        this.props.history.push('/login')
+
+    }
+
     render(){
         return(
-                <div>
-                <Sidebar width={300} height={"100vh"}>
+                <div className = "container">
+                <Sidebar width={300} height={"100vh"} className = "side-bar">
                 <Link to ='./dashboard'>Your Dashboard</Link>
                 <br></br>
                 <br></br>
                 <Link to ='./recommend'>Recommend A Business</Link>
+                <br></br>
+                <br></br>
+                <button onClick = {this.handleLogOut}>Log out</button>
                 </Sidebar>
+                <div className = 'box-1'>
                 <h1>Begin Your Search</h1>
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div className = "input">       
@@ -129,18 +141,12 @@ export default class SearchForm extends React.Component {
                 <option value="Groomers">Groomers</option>
                 <option value="Hiking Trails"> Hiking Trails</option>
                 <option value="Brunch">Brunch Spots</option>
-
-
-
-
-
                 </select>
                 </div>
                 <input type="submit" value="Fetch!" className="button" />
                 </form>
                 <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
-
-               
+                </div>
                 </div>
         )
     }

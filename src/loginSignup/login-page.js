@@ -34,8 +34,7 @@ export default class LoginPage extends React.Component {
         .then(res => {
         
             this.context.setUserName(this.userInput.current.value)
-            localStorage.setItem( 'user_name', this.userInput.current.value );
-            
+            localStorage.setItem( 'user_name', this.userInput.current.value );       
             TokenService.saveAuthToken(res.token);
             this.props.onValidLogin(); 
 
