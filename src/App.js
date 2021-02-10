@@ -13,6 +13,7 @@ import LogOut from './loginSignup/logout';
 import TokenService from './client-services/token';
 import config from './config';
 import { withRouter } from 'react-router-dom';
+import './App.css';
 
 
 class App extends React.Component {
@@ -117,7 +118,9 @@ class App extends React.Component {
       <Route exact path='/login' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/search' component={SearchForm} />
+      <div className = "dashboard-view">
       <Route path='/dashboard' component={Favorites} />
+      </div>
       <Route path='/recommend' component={Recommend} />
     </div>
     </ DoggoContext.Provider >

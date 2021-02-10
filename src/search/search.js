@@ -111,6 +111,7 @@ export default class SearchForm extends React.Component {
 
     render(){
         return(
+                
                 <div className = "container">
                 <Sidebar width={300} height={"100vh"} className = "side-bar">
                 <Link to ='./dashboard'>Your Dashboard</Link>
@@ -122,15 +123,15 @@ export default class SearchForm extends React.Component {
                 <button onClick = {this.handleLogOut}>Log out</button>
                 </Sidebar>
                 <div className = 'box-1'>
-                <h1>Begin Your Search</h1>
+                <h1 className = "form-title">Begin Your Search</h1>
                 <form className ='form-container' onSubmit={this.handleSubmit}>
-                <div className = "input">       
+                <div >       
                 <label for="fname" >5 Digit Zip Code (US Only):</label>
-                <input ref = {this.zipInput} type="text" id="zip" name="zip" defaultValue = "10011"/>
+                <input className = "fetch-input" ref = {this.zipInput} type="text" id="zip" name="zip" defaultValue = "10011"/>
                 </div>
-                <div className = "input"> 
+                <div > 
                 <label for="type">Type of Activity:</label>
-                <select ref = {this.typeInput} name="type" id="type">
+                <select ref = {this.typeInput} name="type" id="type" className = "fetch-input">
                 <option value="Parks">Parks</option>
                 <option value="Bars">Bars</option>
                 <option value="Restaurants">Restaurants</option>
@@ -143,8 +144,9 @@ export default class SearchForm extends React.Component {
                 <option value="Brunch">Brunch Spots</option>
                 </select>
                 </div>
-                <input type="submit" value="Fetch!" className="button" />
+                <input type="submit" value="Fetch!" className="fetch-button" />
                 </form>
+                <div className = 'form-image'> {!this.state.clicked ? <img src = 'https://static01.nyt.com/images/2018/02/10/realestate/dogsofny-bkln/dogsofny-bkln-superJumbo.gif' width = "720" height = "500"/> : null}</div>
                 <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
                 </div>
                 </div>

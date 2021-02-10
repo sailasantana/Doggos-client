@@ -1,11 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Result from './result'
-import MapWrapped from '../map/map'
-import DoggoContext from '../context'
-import LogOut from '../loginSignup/logout'
-import config from '../config'
-import TokenService from '../client-services/token'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Result from './result';
+import MapWrapped from '../map/map';
+import DoggoContext from '../context';
+import LogOut from '../loginSignup/logout';
+import config from '../config';
+import TokenService from '../client-services/token';
+import './result.css';
 
 
 export default class Results extends React.Component {
@@ -51,15 +52,14 @@ export default class Results extends React.Component {
 
     
     let revised = () => {
-        
+
         if(!results){
             return 'No Results Found - Please try a different zip'
         }       
         else {
 
          return results.filter((result,i) => {
-          //console.log(typeof(result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1)))   
-         //console.log(result.formatted_address.split(',')[2].split(' ')[2].slice(0,-1), this.context.currentZip.slice(0,-1))
+          
            let zip = this.context.currentZip
            console.log(result.formatted_address)
            let zips = result.formatted_address
@@ -75,7 +75,7 @@ export default class Results extends React.Component {
 
             return (
                 <ul key = {place.id}>
-                    <li className = {place.id}>
+                    <li className = "place">
                      <Result 
                         title = {place.name}
                         address = {place.formatted_address}
@@ -97,8 +97,8 @@ export default class Results extends React.Component {
                  <div>
                      {filteredResults.length > 0 ?
                      <div>
-                     <div>{searchResults}</div>
-                     <div style={{ width: "75vw", height: "100vh" }} className = "map"> 
+                     <div className = 'list-results'>{searchResults}</div>
+                     <div style={{ width: "75vw", height: "100vh" }} className = "map-results"> 
                           <MapWrapped       
                           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${config.key}`}
                           loadingElement={<div style={{ height: "100%" }} />}

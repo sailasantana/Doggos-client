@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import TokenService from '../client-services/token';
 import config from '../config'
 import DoggoContext from '../context'
+import './result.css'
 
 
 
@@ -141,7 +142,7 @@ export default class Result extends React.Component {
         
           </p>
           <button 
-            className='Get_details' 
+            className='details-button' 
             onClick = {this.handleGet}
             type='button' 
             value = {place_id}>           
@@ -163,7 +164,7 @@ export default class Result extends React.Component {
 
 
           <button 
-            className='Add_to_board' 
+            className='add-button' 
             onClick = {this.handleAdd}
             type='button'>
            

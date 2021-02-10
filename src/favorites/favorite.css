@@ -9,11 +9,57 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    
 }
 
 .title {
     text-align: center;
     padding-top: 20px;
+}
+
+.Spot-delete-button{
+    padding: 12px 10px;
+    border: 0;
+    background: rgb(139, 42, 237); 
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Rubik', sans-serif;
+    margin:3px;
+}
+
+
+.saved-spot{
+    list-style: none;
+    text-decoration: none;
+   
+
+}
+
+.all-spots{
+   
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.dashboard-container{
+    display:flex;
+    flex-direction: column;
+}
+
+.dashboard-image{
+    align-self: flex-end;
+}
+
+.dashboard-title{
+    text-align: center;
+    font-size:1.75em;
+    color:#4f46a5;
+}
+
+.Spot-title{
+    color:#4f46a5;
+    font-size: 1.3em;
 }

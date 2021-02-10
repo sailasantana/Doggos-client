@@ -4,6 +4,7 @@ import Sidebar from '../sidebar/sidebar'
 import LogOut from '../loginSignup/logout'
 import config from '../config'
 import TokenService from '../client-services/token';
+import './recommend.css';
 
 
 
@@ -56,16 +57,16 @@ export default class Recommend extends React.Component {
 
         return(
             <div>
-            <Sidebar width={300} height={"100vh"}>
+            {/* <Sidebar width={300} height={"100vh"}>
             <Link to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
             <Link to ='./dashboard'>My Dashboard</Link>
             
-            </Sidebar>
-
+            </Sidebar> */}
+            <div className = "recommend-container">
+            <h1>Recommend A Business To Add To The Doggo Directory</h1>
             <form className ='form-container' onSubmit = {this.handleSubmit} >
-                <h1>Recommend A Business To Add To The Doggo Directory</h1>
                 <div className = "input"> 
                 <label for="type">Name:</label>
                 <input type="text" id="name" name="name" value="Paw Haven" />
@@ -90,6 +91,7 @@ export default class Recommend extends React.Component {
                 <input type="submit" value="Recommend" className="button" />
                 </form>
                 <div className = "results"> {this.state.submit ? <p>Your recommendation was successfully submitted. It will be reviewed by our Doggo Administrator. Thank you!</p> : null}</div>
+                </div>
                 </div>
         )
     }

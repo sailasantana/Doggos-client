@@ -6,6 +6,7 @@ import DoggoContext from '../context'
 import config from '../config'
 import StarRating from './rating'
 import TokenService from '../client-services/token';
+import './favorite.css';
 
 
 
@@ -45,13 +46,12 @@ export default class Favorite extends React.Component {
   
         return (
           <div className='Spot'>
-  
-            <h2 className='Spot_title'>
+            <h2 className='Spot-title'>
               
                 {title}
             
             </h2>
-            <p className='Spot_address'>
+            <p className='Spot-address'>
               
               {doggoaddress}
           
@@ -60,7 +60,7 @@ export default class Favorite extends React.Component {
 
   
             <button 
-              className='Spot_delete' 
+              className='Spot-delete-button' 
               type='button'
               onClick={this.handleDelete}>
               Remove

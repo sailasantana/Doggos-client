@@ -27,7 +27,7 @@ body {
   flex: 1;
   background-color: black;
   transition: 1s;
-  background-image: url(https://static01.nyt.com/images/2018/02/08/realestate/dogsofny-promo/dogsofny-promo-videoSixteenByNineJumbo1600.jpg);
+  background-image: url('https://static01.nyt.com/images/2018/02/08/realestate/dogsofny-promo/dogsofny-promo-videoSixteenByNineJumbo1600.jpg');
   background-size: cover;
   min-height:100%;
   background-repeat: no-repeat;
