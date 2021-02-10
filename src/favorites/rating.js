@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './rating.css';
-import { FaStar } from 'react-icons/fa';
+//import { FaStar } from 'react-icons/fa';
 
 export default class StarRating extends React.Component{
     constructor(props){
