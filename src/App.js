@@ -8,7 +8,6 @@ import Recommend from './recommend/recommend';
 import DoggoContext from './context';
 import React from 'react';
 import SearchForm from './search/search';
-import StarRating from './favorites/rating';
 import LogOut from './loginSignup/logout';
 import TokenService from './client-services/token';
 import config from './config';

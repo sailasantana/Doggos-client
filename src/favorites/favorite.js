@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../sidebar/sidebar'
 import DoggoContext from '../context'
 import config from '../config'
-import StarRating from './rating'
 import TokenService from '../client-services/token';
 import './favorite.css';
 
