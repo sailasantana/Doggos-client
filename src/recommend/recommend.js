@@ -57,15 +57,15 @@ export default class Recommend extends React.Component {
 
         return(
             <div>
-            {/* <Sidebar width={300} height={"100vh"}>
+            <Sidebar width={300} height={"100vh"}>
             <Link to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
             <Link to ='./dashboard'>My Dashboard</Link>
             
-            </Sidebar> */}
+            </Sidebar>
             <div className = "recommend-container">
-            <h1>Recommend A Business To Add To The Doggo Directory</h1>
+            <h1>Recommend A Business To Add To Doggo Directory</h1>
             <form className ='form-container' onSubmit = {this.handleSubmit} >
                 <div className = "input"> 
                 <label for="type">Name:</label>

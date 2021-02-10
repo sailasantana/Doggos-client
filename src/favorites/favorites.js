@@ -67,12 +67,12 @@ export default class Favorites extends React.Component {
         })
       return (
         <div> 
-            {/* <Sidebar width={300} height={"100vh"}>
+            <Sidebar width={300} height={"100vh"}>
             <Link to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
             <Link to ='./recommend'>Recommend A Business</Link>
-            </Sidebar>     */}
+            </Sidebar>    
            <div className = "dashboard-container" >
            <h2 className = "dashboard-title">Places to Take Doggo</h2>
            <div className = "all-spots">{spots}</div>
