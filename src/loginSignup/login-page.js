@@ -15,6 +15,8 @@ export default class LoginPage extends React.Component {
         onValidLogin: () => {}
     };
 
+
+
     constructor(props) {
         super(props);
         this.userInput = React.createRef();
@@ -65,9 +67,9 @@ export default class LoginPage extends React.Component {
                     <form className="login-form" onSubmit={this.handleJwtLoginAuth}>
                     <input type="text" ref = {this.userInput}  name="user" id="user" className="form-field animation a3" placeholder="Username"/>
                     <input type="password" ref = {this.passInput} name="password" id="password" className="form-field animation a4" placeholder="Password"/>
-                    <button className="animation a6">LOGIN</button>
+                    <button className="animation a6">LOGIN</button>                   
+                    <Link  className = "link-sign-up" to = '/sign-up'>New User? Sign up here</Link>
                     </form>
-                    <Link to = '/sign-up'>New User? Sign up here</Link>
                 </div>
                 <div className="right"></div>
             </div>

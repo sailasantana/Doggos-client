@@ -138,9 +138,10 @@ export default class Result extends React.Component {
           </p>
           <p className='Result_rating'>
             
-            overall user rating: {overall_rating}
+            Overall Rating: {overall_rating}
         
           </p>
+          <div className = 'buttons-containter'>
           <button 
             className='details-button' 
             onClick = {this.handleGet}
@@ -150,15 +151,15 @@ export default class Result extends React.Component {
          </button>
         
           {this.state.results.result && this.state.learnMore ? 
-                        <div>
-                        <p>{this.state.results.result.website}</p>
-                        <p>{this.state.results.result.formatted_phone_number}</p>
-                        <ul> <p>Reviews:</p>
-                            <li>"{this.state.results.result.reviews[0].text}" - {this.state.results.result.reviews[0].author_name} </li>
-                            <li>"{this.state.results.result.reviews[2].text}" - {this.state.results.result.reviews[2].author_name} </li>
-                            <li>"{this.state.results.result.reviews[4].text}" - {this.state.results.result.reviews[4].author_name} </li>
+                        <div className = "learn-more-container">
+                        <a href= {this.state.results.result.website} className = "detail learn-more-website">{this.state.results.result.website}</a>
+                        <p className = "detail learn-more-number">{this.state.results.result.formatted_phone_number}</p>
+                        <ul className = "detail learn-more-reviews"> 
+                            <li className = "learn-more-review">"{this.state.results.result.reviews[0].text}" - {this.state.results.result.reviews[0].author_name} </li>
+                            <li className = "learn-more-review">"{this.state.results.result.reviews[2].text}" - {this.state.results.result.reviews[2].author_name} </li>
+                            <li className = "learn-more-review">"{this.state.results.result.reviews[4].text}" - {this.state.results.result.reviews[4].author_name} </li>
                         </ul>
-                        <button onClick = {this.handleClick}>x</button>
+                        <button className = "learn-more-button" onClick = {this.handleClick}>x</button>
         
                         </div> : null}
 
@@ -172,7 +173,7 @@ export default class Result extends React.Component {
 
           </button>
           
-         
+          </div>
         
          
         </div>

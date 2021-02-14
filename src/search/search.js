@@ -110,17 +110,18 @@ export default class SearchForm extends React.Component {
     }
 
     render(){
-        return(
-                
-                <div className = "container">
-                <Sidebar width={300} height={"100vh"} className = "side-bar">
-                <Link to ='./dashboard'>Your Dashboard</Link>
+
+        return(            
+                <div className = "search-container">
+                <Sidebar width={300} height={"100vh"} className = "side-bar"> 
+                <br></br>           
+                <Link className = "link1-button" to ='./dashboard'>Your Dashboard</Link>   
                 <br></br>
                 <br></br>
-                <Link to ='./recommend'>Recommend A Business</Link>
                 <br></br>
+                <Link className = "link2-button" to ='./recommend'>Recommend A Business</Link>
                 <br></br>
-                <button onClick = {this.handleLogOut}>Log out</button>
+                <button className="log-out-button" onClick = {this.handleLogOut}>Log out</button>
                 </Sidebar>
                 <div className = 'box-1'>
                 <h1 className = "form-title">Begin Your Search</h1>
@@ -146,7 +147,7 @@ export default class SearchForm extends React.Component {
                 </div>
                 <input type="submit" value="Fetch!" className="fetch-button" />
                 </form>
-                <div className = 'form-image'> {!this.state.clicked ? <img src = 'https://static01.nyt.com/images/2018/02/10/realestate/dogsofny-bkln/dogsofny-bkln-superJumbo.gif' width = "720" height = "500"/> : null}</div>
+                <div className = 'image-container'> {!this.state.clicked ? <img className = "form-image" src = 'https://static01.nyt.com/images/2018/02/10/realestate/dogsofny-bkln/dogsofny-bkln-superJumbo.gif' /> : null}</div>
                 <div className = "results"> {this.state.clicked ? <Results /> : null}</div>
                 </div>
                 </div>

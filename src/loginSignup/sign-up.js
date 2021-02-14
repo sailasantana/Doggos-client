@@ -13,6 +13,8 @@ export default class SignUp extends React.Component {
         this.lNameInput = React.createRef()
         this.userInput = React.createRef()
         this.passInput = React.createRef()
+
+        this.state = {error: null};
     }
 
     handleNewUser = (e) => {
@@ -37,11 +39,12 @@ export default class SignUp extends React.Component {
             this.props.history.push(`/login`)
             window.alert('Registered successfully. Please log in with your new credentials.');
         })
-        .catch(res => {
+        .catch(err => {
             this.setState({
-                error: window.alert('An unexpected error occurred. Please try again later.')
+                error: err.error
+                });
             });
-        })
+      
 
 
 
@@ -50,19 +53,22 @@ export default class SignUp extends React.Component {
     render(){
 
         return(
-            <div class="container">
+            <div class="sign-up-container">
                 <div class="center">
-                    <div class="header">
-                    <h2 >What are you waiting for? Sign up already!</h2>
+                    <div class="sign-up-header">
+                    <h2>Sign up already!</h2>
                     <img src = "https://thumbs.gfycat.com/GrossContentBluemorphobutterfly-size_restricted.gif"/>
                     </div>
                     <form className="signup-form" onSubmit = {this.handleNewUser}>
-                    <input ref = {this.fNameInput} type = 'text' name= 'first_name' id='first_name' class="form-field" placeholder="First Name"/>
-                    <input  ref ={this.lNameInput} type = 'text' name= 'last_name' id='last_name' class="form-field" placeholder="Last Name"/>
-                    <input type="text" ref = {this.userInput}  name="user" id="user" class="form-field" placeholder="Username"/>
-                    <input type="password" ref = {this.passInput} name="password" id="password" class="form-field" placeholder="Password"/>
+                    <input ref = {this.fNameInput} type = 'text' name= 'first_name' id='first_name' class="form-field" placeholder="First Name" required/>
+                    <input  ref ={this.lNameInput} type = 'text' name= 'last_name' id='last_name' class="form-field" placeholder="Last Name" required/>
+                    <input type="text" ref = {this.userInput}  name="user" id="user" class="form-field" placeholder="Username" required/>
+                    <input type="password" ref = {this.passInput} name="password" id="password" class="form-field" placeholder="Password" required/>
                     <button >Sign Up</button>
                     </form>
+                    {this.state.error ?
+                    <div>{this.state.error}</div> : null
+                    }
                 </div>
             </div>
         )

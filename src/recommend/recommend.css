@@ -1,4 +1,58 @@
-.recommend-container{
+.recommend-container2{
     display:flex;
     flex-direction: column;
+    position: absolute;
+}
+
+.recommend-container1{
+    position: relative;
+    display:flex;
+}
+
+
+.recommend-button{
+    padding: 12px 10px;
+    border: 0;
+    background: rgb(139, 42, 237); 
+    border-radius: 3px;
+    margin-top: 30px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Rubik', sans-serif;
+    width:26%;
+}
+
+.recommend-form-container{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 50px;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.recommend-label{
+    margin-top:50px;
+}
+
+.result-text{
+    margin-left:50px;
+    color: rgb(139, 42, 237);
+}
+
+@media screen and (min-width: 768px) {
+    .recommend-button{
+        padding: 12px 10px;
+        border: 0;
+        background: rgb(139, 42, 237); 
+        border-radius: 3px;
+        margin-top: 30px;
+        color: #fff;
+        letter-spacing: 1px;
+        font-family: 'Rubik', sans-serif;
+        width:16%;
+    }
+
+
+
+
 }

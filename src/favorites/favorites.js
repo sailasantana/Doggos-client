@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import favorite from './favorite';
 import DoggoContext from '../context';
 import Favorite from './favorite';
 import Sidebar from '../sidebar/sidebar';
-import LogOut from '../loginSignup/logout';
 import config from '../config';
 import './favorite.css';
 import TokenService from '../client-services/token';
@@ -43,7 +41,13 @@ export default class Favorites extends React.Component {
             });
     }
 
+    handleLogOut = () => {
 
+        TokenService.clearAuthToken()
+        console.log(this.props)
+        this.props.history.push('/login')
+
+    }
    
 
     render(){
@@ -66,17 +70,22 @@ export default class Favorites extends React.Component {
             )
         })
       return (
-        <div> 
-            <Sidebar width={300} height={"100vh"}>
-            <Link to ='./search'>Doggo Search</Link>
+        <div className = "dashboard-container1"> 
+            <Sidebar className = "side-bar" width={300} height={"100vh"}>
+            <br></br>    
+            <Link className = "link1-button" to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
-            <Link to ='./recommend'>Recommend A Business</Link>
+            <br></br>
+            <Link className = "link2-button" to ='./recommend'>Recommend A Business</Link>
+            <br></br>
+            <button className="log-out-button" onClick = {this.handleLogOut}>Log out</button>
             </Sidebar>    
-           <div className = "dashboard-container" >
+           <div className = "dashboard-container2" >
            <h2 className = "dashboard-title">Places to Take Doggo</h2>
-           <div className = "all-spots">{spots}</div>
-           <img className = "dashboard-image" src = "https://i.pinimg.com/474x/06/fa/ba/06faba422b1e25a5ddcfb4fbab6f5bc8.jpg" height = "350" width = "400"/>
+           <div className = "all-spots">{spots}
+           <Link className = "add-more-button" to = '/dashboard'>+</Link>
+           </div>
             </div> 
         </div>  ) 
    

@@ -36,7 +36,6 @@ export default class Results extends React.Component {
                 })
             })
             .catch( err => {
-                console.log( err.message );
                 this.props.history.push( '/login' );
             });
     }
@@ -45,11 +44,6 @@ export default class Results extends React.Component {
     render(){
 
     const results = this.context.locations.results
-
-    // console.log(results)
-    // console.log(this.context.currentZip.slice(0,-1))
-    // console.log(this.context.locations.results[0].formatted_address.split(',')[2].split(' ')[2].slice(0,-1) )
-
     
     let revised = () => {
 
@@ -61,7 +55,6 @@ export default class Results extends React.Component {
          return results.filter((result,i) => {
           
            let zip = this.context.currentZip
-           console.log(result.formatted_address)
            let zips = result.formatted_address
            return zips.slice(-20,-16) == zip.slice(0,-1)})
       
@@ -69,9 +62,8 @@ export default class Results extends React.Component {
         } 
 
     const filteredResults =  revised() 
-    console.log('filter results',filteredResults)
 
-     const searchResults = filteredResults.map( (place, i) => {
+    const searchResults = filteredResults.map( (place, i) => {
 
             return (
                 <ul key = {place.id}>
@@ -94,11 +86,11 @@ export default class Results extends React.Component {
 
 
              return(
-                 <div>
+                 <div >
                      {filteredResults.length > 0 ?
-                     <div>
+                     <div className = "results-container">
                      <div className = 'list-results'>{searchResults}</div>
-                     <div style={{ width: "75vw", height: "100vh" }} className = "map-results"> 
+                     <div className = "map-results"> 
                           <MapWrapped       
                           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${config.key}`}
                           loadingElement={<div style={{ height: "100%" }} />}

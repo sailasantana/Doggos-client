@@ -1,11 +1,13 @@
 .side-bar {
     height: 100% !important;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-right: 0.5px solid;
     border-radius: 0px;
-    border-color:   rgba(0, 1, 2, 0.693);
-    background-color: rgb(255, 255, 255);
+    border-color:   rgb(139, 42, 237);
+    background-image:url('https://media.istockphoto.com/vectors/seamless-pattern-dog-vector-id165551117?b=1&k=6&m=165551117&s=612x612&w=0&h=3SsY8U_lCU6xbN49sa6TB3OTa0c29PLkBLMjqTFh550=');
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: 0.8s ease;
 }
 
@@ -15,7 +17,7 @@
     border-bottom-right-radius: 9rem;
     position: absolute;
     outline: none;
-    background-color: rgba(0, 1, 2, 0.693);
-    border-color: rgba(0, 1, 2, 0.693);
+    background-color:rgb(139, 42, 237);
+    border-color:rgb(139, 42, 237);
     border-left: 0;
 }

@@ -1,5 +1,10 @@
-.list-results, .map-results{
-    display: block;
+
+
+.map-results{
+    padding-right: 10px;
+    padding-left:10px;
+    width: 100vw;
+    height: 70vh;
 }
 
 .place{
@@ -17,5 +22,178 @@
     letter-spacing: 1px;
     font-family: 'Rubik', sans-serif;
     margin:3px;
+    
+}
+
+.results-container {
+    display:flex;
+    flex-direction: column;
+}
+
+.Result{
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+
+.Result_title{
+   color: #4f46a5
+
+}
+
+
+.buttons-containter{
+    flex-direction: row;
+}
+
+
+.learn-more-button{
+    padding: 12px 15px;
+    border: 0;
+    background: rgb(139, 42, 237); 
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Rubik', sans-serif;
+    margin:3px;
+
+}
+
+
+.learn-more-container{
+    border: 1px solid transparent;
+    padding:9px;
+    
+}
+
+.learn-more-website{
+    color:rgb(139, 42, 237);
+    font-weight: 600;
+    font-size: 18px;
+    
+
+}
+
+.learn-more-number{
+    color:rgb(139, 42, 237);
+    font-weight: 600;
+    
+}
+
+.learn-more-review{
+    list-style: none;
+    padding-left:0px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+ 
+}
+
+.learn-more-reviews{
+    padding-left:0px;
+   
+    ;
+
+
+}
+
+
+/* css ofr tablet and desktop sizes */
+@media screen and (min-width: 768px) {
+
+
+    
+    .map-results{
+        padding-right: 10px;
+        width: 65vw;
+        height: 90vh;
+    }
+    
+    .place{
+        list-style: none;
+        text-decoration: none;
+    }
+    
+    .add-button, .details-button {
+        padding: 12px 10px;
+        border: 0;
+        background: rgb(139, 42, 237); 
+        border-radius: 3px;
+        margin-top: 10px;
+        color: #fff;
+        letter-spacing: 1px;
+        font-family: 'Rubik', sans-serif;
+        margin:3px;
+        
+    }
+    
+    .results-container {
+        display:flex;
+        flex-direction: row;
+    }
+    
+    .Result{
+        display: flex;
+        flex-direction: column;
+        padding-right: 10px;
+    }
+    
+    .Result_title{
+       color: #4f46a5
+    
+    }
+    
+    
+    .buttons-containter{
+        flex-direction: row;
+    }
+    
+    
+    .learn-more-button{
+        padding: 12px 15px;
+        border: 0;
+        background: rgb(139, 42, 237); 
+        border-radius: 3px;
+        margin-top: 10px;
+        color: #fff;
+        letter-spacing: 1px;
+        font-family: 'Rubik', sans-serif;
+        margin:3px;
+    
+    }
+    
+    
+    .learn-more-container{
+        border: 1px solid transparent;
+        padding:9px;
+        
+    }
+    
+    .learn-more-website{
+        color:rgb(139, 42, 237);
+        font-weight: 600;
+        font-size: 18px;
+        
+    
+    }
+    
+    .learn-more-number{
+        color:rgb(139, 42, 237);
+        font-weight: 600;
+        
+    }
+    
+    .learn-more-review{
+        list-style: none;
+        padding-left:0px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+     
+    }
+    
+    .learn-more-reviews{
+        padding-left:0px;  
+    
+    }
 
 }

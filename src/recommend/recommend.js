@@ -53,27 +53,37 @@ export default class Recommend extends React.Component {
 
     }
 
+
+    handleLogOut = () => {
+
+        TokenService.clearAuthToken()
+        console.log(this.props)
+        this.props.history.push('/login')
+
+    }
+
     render(){
 
         return(
-            <div>
-            <Sidebar width={300} height={"100vh"}>
-            <Link to ='./search'>Doggo Search</Link>
+            <div className = "recommend-container1">
+            <Sidebar className = "side-bar" width={300} height={"100vh"}>
+            <br></br>
+            <Link className = "link1-button" to ='./search'>Doggo Search</Link>
             <br></br>
             <br></br>
-            <Link to ='./dashboard'>My Dashboard</Link>
-            
+            <br></br>
+            <Link className = "link2-button" to ='./dashboard'>My Dashboard</Link>
+            <br></br>
+            <button className="log-out-button" onClick = {this.handleLogOut}>Log out</button>
             </Sidebar>
-            <div className = "recommend-container">
-            <h1>Recommend A Business To Add To Doggo Directory</h1>
-            <form className ='form-container' onSubmit = {this.handleSubmit} >
-                <div className = "input"> 
-                <label for="type">Name:</label>
-                <input type="text" id="name" name="name" value="Paw Haven" />
-                </div>
-                <div className = "input"> 
-                <label for="type">Type Of Business:</label>
-                <select name="type" id="type">
+            <div className = "recommend-container2">
+            <h1 className = "form-title">Recommend A DoggoSpot</h1>
+            <h3 className = "form-title">Help DoggosWelcome grow its directory and make the world a more dog-friendly place</h3>
+            <form className ='recommend-form-container' onSubmit = {this.handleSubmit} >        
+                <label className= "recommend-label"  for="type">Name:</label>
+                <input className = "fetch-input" type="text" id="name" name="name" placeholder="Paw Haven"  required/>                
+                <label className= "recommend-label"  for="type">Type Of Business:</label>
+                <select   className = "fetch-input " name="type" id="type">
                 <option value="Pet Supplies">Pet Supplies</option>
                 <option value="Parks">Park</option>
                 <option value="Bars">Bar</option>
@@ -81,16 +91,12 @@ export default class Recommend extends React.Component {
                 <option value="Veterinarian Services">Veterinarian Services</option>
                 <option value="Dog Beaches">Dog Beach</option>
                 <option value="Other">Other</option>
-                </select>   
-                </div>
-                <div className = "input">       
-                <label for="address" >Address:</label>
-                <p>Please include Street Address, City, State and Zip</p>
-                <textarea type="text" id="address" name="address" value="123 Fluffy Lane, Brooklyn, NY 11201" />
-                </div>
-                <input type="submit" value="Recommend" className="button" />
+                </select>                 
+                <label className= "recommend-label" for="address" >Address (Please include Street Address, City, State and Zip):</label>
+                <textarea className = "fetch-input" type="text" id="address" name="address" placeholder="123 Fluffy Lane, Brooklyn, NY 11201" required />               
+                <input type="submit" value="Recommend" className="recommend-button" />
                 </form>
-                <div className = "results"> {this.state.submit ? <p>Your recommendation was successfully submitted. It will be reviewed by our Doggo Administrator. Thank you!</p> : null}</div>
+                <div> {this.state.submit ? <p className = "result-text">Your recommendation was successfully submitted. It will be reviewed by our Doggo Administrator. Thank you!</p> : null}</div>
                 </div>
                 </div>
         )
