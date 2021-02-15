@@ -29,10 +29,33 @@ Landing page:
 ![Recommend](screenshots/recommend.png)
 
 
+# API Endpoints
+
+## Users and Authentication
+
+### POST
+- /api/login (login)
+- /api/signup (sign Up)
+
+## Search
+
+### POST
+- /api/search (doggoSearch - requests to Google Places and Places Details API)
+
+## Dashboard
+
+### GET
+- /api/:username/dashboard (gets user's saved searches)
+
+### DELETE
+- /api/:username/dashboard/:id (deletes a saved spot from user's dashboard)
+
+
+
 # Environment Set Up
 
 * Setup your own postgress server
-* Run the sql scripts in migration folder to build your table structure
+* Run the sql scripts in migration folder to build your table structure. Server repo : https://github.com/sailasantana/capstone-2-server-v2
 * Create a .env file in your server folder which contains the path to your database as well as your Google API key and jwt secret
 * Obtain a Google API key by setting up your app with the google developers console
 * Run your project with : ```npm run dev```
@@ -68,6 +91,6 @@ Landing page:
 * Jest
 
 
-# Acknowledgements 
+# Acknowledgments
 
 * Art work from The New York Times
