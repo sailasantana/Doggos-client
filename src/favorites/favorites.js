@@ -36,16 +36,15 @@ export default class Favorites extends React.Component {
                 })
             })
             .catch( err => {
-                console.log( err.message );
-                this.props.history.push( '/login' );
+                alert('Please log back in to continue');
+                this.props.history.push( '/' );
             });
     }
 
     handleLogOut = () => {
 
         TokenService.clearAuthToken()
-        console.log(this.props)
-        this.props.history.push('/login')
+        this.props.history.push('/')
 
     }
    

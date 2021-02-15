@@ -39,11 +39,11 @@ export default class Favorite extends React.Component {
 
     }
 
-    
+
 
     render () {  
         const {title , id, doggoaddress, rating} = this.props; 
-        console.log(this.props)
+        
   
         return (
           <div className='Spot'>

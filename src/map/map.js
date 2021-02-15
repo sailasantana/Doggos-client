@@ -46,8 +46,8 @@ class Map extends React.Component {
               })
           })
           .catch( err => {
-              console.log( err.message );
-              this.props.history.push( '/login' );
+            alert('Please log back in to continue');
+            this.props.history.push( '/' );
           });
   }
 

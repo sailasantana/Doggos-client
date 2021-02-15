@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Result from './result';
 import MapWrapped from '../map/map';
 import DoggoContext from '../context';
-import LogOut from '../loginSignup/logout';
 import config from '../config';
 import TokenService from '../client-services/token';
 import './result.css';
@@ -36,7 +35,8 @@ export default class Results extends React.Component {
                 })
             })
             .catch( err => {
-                this.props.history.push( '/login' );
+                alert('Please log back in to continue');
+                this.props.history.push( '/' );
             });
     }
 
@@ -100,7 +100,7 @@ export default class Results extends React.Component {
                     
                       </div>
                       </div>
-                      : 'No results - Please try a different zip'
+                      : <div className = "no-results-message">No results - Please try a different zip</div>
                      }
                      </div>
                 

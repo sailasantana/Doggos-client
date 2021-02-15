@@ -7,7 +7,6 @@ import DoggoContext from '../context'
 import MapWrapped from '../map/map';
 import Sidebar from '../sidebar/sidebar'
 import TokenService from '../client-services/token'
-import LogOut from '../loginSignup/logout'
 
 
 
@@ -51,8 +50,8 @@ export default class SearchForm extends React.Component {
                 })
             })
             .catch( err => {
-                console.log( err.message );
-                this.props.history.push( '/login' );
+                alert('Please log back in to continue');
+                this.props.history.push('/');
             });
     }
 
@@ -94,8 +93,6 @@ export default class SearchForm extends React.Component {
           })
           .catch(error => {
             this.context.setLocations({ results: [] })
-
-              console.log(error)
         })
 
 
@@ -104,8 +101,7 @@ export default class SearchForm extends React.Component {
     handleLogOut = () => {
 
         TokenService.clearAuthToken()
-        console.log(this.props)
-        this.props.history.push('/login')
+        this.props.history.push('/')
 
     }
 
@@ -127,11 +123,11 @@ export default class SearchForm extends React.Component {
                 <h1 className = "form-title">Begin Your Search</h1>
                 <form className ='form-container' onSubmit={this.handleSubmit}>
                 <div >       
-                <label for="fname" >5 Digit Zip Code (US Only):</label>
+                <label htmlFor="fname" >5 Digit Zip Code (US Only):</label>
                 <input className = "fetch-input" ref = {this.zipInput} type="text" id="zip" name="zip" defaultValue = "10011"/>
                 </div>
                 <div > 
-                <label for="type">Type of Activity:</label>
+                <label htmlFor="type">Type of Activity:</label>
                 <select ref = {this.typeInput} name="type" id="type" className = "fetch-input">
                 <option value="Parks">Parks</option>
                 <option value="Bars">Bars</option>

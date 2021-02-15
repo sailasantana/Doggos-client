@@ -1,14 +1,11 @@
 import LoginPage from './loginSignup/login-page';
 import SignUp from './loginSignup/sign-up';
 import {Route} from 'react-router-dom';
-import MapWrapped from './map/map';
 import Favorites from './favorites/favorites';
-import './map/map.css';
 import Recommend from './recommend/recommend';
 import DoggoContext from './context';
 import React from 'react';
 import SearchForm from './search/search';
-import LogOut from './loginSignup/logout';
 import TokenService from './client-services/token';
 import config from './config';
 import { withRouter } from 'react-router-dom';
@@ -43,18 +40,16 @@ class App extends React.Component {
       if(!res.ok){
         return res.json().then(e => Promise.reject(e))
       }
-      console.log(res)
+      
       return res.json()
     })
 
     .then(spots => {
-      console.log(spots)
       
       this.setUserSpots(spots)
     })
     .catch(error => {
-      alert('You must be logged in to continue')
-      this.props.history.push('/login')
+      this.props.history.push('/')
     })
   }
 
@@ -114,7 +109,7 @@ class App extends React.Component {
     <DoggoContext.Provider value={contextValues}>
 
     <div className="App">
-      <Route exact path='/login' component={LoginPage} />
+      <Route exact path='/' component={LoginPage} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/search' component={SearchForm} />
       <div className = "dashboard-view">

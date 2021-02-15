@@ -2,7 +2,7 @@ import "./sidebar.css";
 import React from "react";
 
  const Sidebar = ({ width, height, children }) => {
-  const [xPosition, setX] = React.useState(-width);
+  const [xPosition, setX] = React.useState(width);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -13,7 +13,7 @@ import React from "react";
   };
 
   React.useEffect(() => {
-    setX(0);
+    setX(-width);
   }, []);
   return (
     <React.Fragment>

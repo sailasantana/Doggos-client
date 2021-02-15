@@ -36,7 +36,7 @@ export default class SignUp extends React.Component {
             this.passInput.current.value = '';
         })
         .then(() => {
-            this.props.history.push(`/login`)
+            this.props.history.push(`/`)
             window.alert('Registered successfully. Please log in with your new credentials.');
         })
         .catch(err => {

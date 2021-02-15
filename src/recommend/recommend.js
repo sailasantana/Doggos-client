@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../sidebar/sidebar'
-import LogOut from '../loginSignup/logout'
-import config from '../config'
+import Sidebar from '../sidebar/sidebar';
+import config from '../config';
 import TokenService from '../client-services/token';
 import './recommend.css';
 
@@ -38,8 +37,8 @@ export default class Recommend extends React.Component {
                 })
             })
             .catch( err => {
-                console.log( err.message );
-                this.props.history.push( '/login' );
+                alert('Please log back in to continue');
+                this.props.history.push( '/' );
             });
     }
 
@@ -57,8 +56,7 @@ export default class Recommend extends React.Component {
     handleLogOut = () => {
 
         TokenService.clearAuthToken()
-        console.log(this.props)
-        this.props.history.push('/login')
+        this.props.history.push('/')
 
     }
 
@@ -80,9 +78,9 @@ export default class Recommend extends React.Component {
             <h1 className = "form-title">Recommend A DoggoSpot</h1>
             <h3 className = "form-title">Help DoggosWelcome grow its directory and make the world a more dog-friendly place</h3>
             <form className ='recommend-form-container' onSubmit = {this.handleSubmit} >        
-                <label className= "recommend-label"  for="type">Name:</label>
+                <label className= "recommend-label"  htmlFor="type">Name:</label>
                 <input className = "fetch-input" type="text" id="name" name="name" placeholder="Paw Haven"  required/>                
-                <label className= "recommend-label"  for="type">Type Of Business:</label>
+                <label className= "recommend-label"  htmlFor="type">Type Of Business:</label>
                 <select   className = "fetch-input " name="type" id="type">
                 <option value="Pet Supplies">Pet Supplies</option>
                 <option value="Parks">Park</option>
@@ -92,7 +90,7 @@ export default class Recommend extends React.Component {
                 <option value="Dog Beaches">Dog Beach</option>
                 <option value="Other">Other</option>
                 </select>                 
-                <label className= "recommend-label" for="address" >Address (Please include Street Address, City, State and Zip):</label>
+                <label className= "recommend-label" htmlFor="address" >Address (Please include Street Address, City, State and Zip):</label>
                 <textarea className = "fetch-input" type="text" id="address" name="address" placeholder="123 Fluffy Lane, Brooklyn, NY 11201" required />               
                 <input type="submit" value="Recommend" className="recommend-button" />
                 </form>

@@ -46,8 +46,8 @@ export default class Result extends React.Component {
                 })
             })
             .catch( err => {
-                console.log( err.message );
-                this.props.history.push( '/login' );
+                alert('Please log back in to continue');
+                this.props.history.push( '/' );
             });
     }
 
@@ -76,7 +76,6 @@ export default class Result extends React.Component {
             return res.json()
         })
         .then(spot => {
-            console.log(spot)
             this.context.addToSaved(spot)
         })
         .catch(error => {
@@ -99,14 +98,14 @@ export default class Result extends React.Component {
          }
          })
          .then(res => {
-             console.log(res)
+             
              if(!res.ok){
                  return res.json().then(e => Promise.reject(e))
              }
              return res.json()
          })
          .then(details => {
-             console.log(details)
+            
              this.setState({results:details})
             })
          .catch(error => {
