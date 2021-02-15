@@ -69,8 +69,13 @@ export default class LoginPage extends React.Component {
                     <input type="password" ref = {this.passInput} name="password" id="password" className="form-field animation a4" placeholder="Password"/>
                     <button className="animation a6">LOGIN</button>                   
                     <Link  className = "link-sign-up" to = '/sign-up'>New User? Sign up here</Link>
+                    <div className = "demo-container">
+                    <div>Demo username : Demo</div>
+                    <div>Demo password : @Thinkful1!</div>
+                    </div>
                     </form>
                 </div>
+
                 <div className="right"></div>
             </div>
                                   
