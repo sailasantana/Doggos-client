@@ -66,3 +66,8 @@ Landing page:
 * Chai
 * Mocha
 * Jest
+
+
+# Acknowledgements 
+
+* Art work from The New York Times
