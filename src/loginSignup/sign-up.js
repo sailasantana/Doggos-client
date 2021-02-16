@@ -53,17 +53,17 @@ export default class SignUp extends React.Component {
     render(){
 
         return(
-            <div class="sign-up-container">
-                <div class="center">
-                    <div class="sign-up-header">
+            <div className="sign-up-container">
+                <div className="center">
+                    <div className="sign-up-header">
                     <h2>Sign up already!</h2>
                     <img src = "https://thumbs.gfycat.com/GrossContentBluemorphobutterfly-size_restricted.gif"/>
                     </div>
                     <form className="signup-form" onSubmit = {this.handleNewUser}>
-                    <input ref = {this.fNameInput} type = 'text' name= 'first_name' id='first_name' class="form-field" placeholder="First Name" required/>
-                    <input  ref ={this.lNameInput} type = 'text' name= 'last_name' id='last_name' class="form-field" placeholder="Last Name" required/>
-                    <input type="text" ref = {this.userInput}  name="user" id="user" class="form-field" placeholder="Username" required/>
-                    <input type="password" ref = {this.passInput} name="password" id="password" class="form-field" placeholder="Password" required/>
+                    <input ref = {this.fNameInput} type = 'text' name= 'first_name' id='first_name' className="form-field" placeholder="First Name" required/>
+                    <input  ref ={this.lNameInput} type = 'text' name= 'last_name' id='last_name' className="form-field" placeholder="Last Name" required/>
+                    <input type="text" ref = {this.userInput}  name="user" id="user" className="form-field" placeholder="Username" required/>
+                    <input type="password" ref = {this.passInput} name="password" id="password" className="form-field" placeholder="Password" required/>
                     <button >Sign Up</button>
                     </form>
                     {this.state.error ?
