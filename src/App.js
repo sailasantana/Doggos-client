@@ -49,6 +49,7 @@ class App extends React.Component {
       this.setUserSpots(spots)
     })
     .catch(error => {
+      console.log('Disregard the 401 above. I am deliberately triggering a fetch call that stores username into local storage. This is so that when a user refreshes the browser (which causes context to be reset) the app does not lose reference to the logged in.')
       this.props.history.push('/')
     })
   }
