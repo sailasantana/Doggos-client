@@ -83,7 +83,7 @@ export default class Favorites extends React.Component {
            <div className = "dashboard-container2" >
            <h2 className = "dashboard-title">Places to Take Doggo</h2>
            <div className = "all-spots">{spots}
-           <Link className = "add-more-button" to = '/dashboard'>+</Link>
+           <Link className = "add-more-button" to = '/search'>+</Link>
            </div>
             </div> 
         </div>  ) 

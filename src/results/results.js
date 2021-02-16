@@ -63,17 +63,18 @@ export default class Results extends React.Component {
 
     const filteredResults =  revised() 
 
+
     const searchResults = filteredResults.map( (place, i) => {
 
             return (
-                <ul key = {place.id}>
+                <ul key = {i} >
                     <li className = "place">
                      <Result 
                         title = {place.name}
                         address = {place.formatted_address}
                         overall_rating = {place.rating}
                         place_id = {place.place_id}
-                        id ={place.id}
+                        id ={i}
                      
                         />
                     </li>
